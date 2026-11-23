@@ -96,13 +96,6 @@ body[data-mode="perso"] .s h2 em{color:var(--lav)}
 .stick{position:sticky;top:110px}
 .sub{font-size:11.5px;font-weight:500;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);margin:46px 0 18px}
 
-.figures{display:grid;grid-template-columns:repeat(4,1fr);margin-top:-1px;border-bottom:1px solid var(--line)}
-.fig{padding:44px 28px 40px 0;border-right:1px solid var(--line);padding-left:28px}
-.fig:first-child{padding-left:0}
-.fig:last-child{border-right:0}
-.fig b{display:block;font-family:var(--serif);font-weight:300;font-size:clamp(46px,5.4vw,72px);line-height:1;color:var(--lav);margin-bottom:12px}
-.fig b.t{font-style:italic;font-size:clamp(34px,4vw,50px);padding-top:.25em}
-.fig span{font-size:13.5px;color:var(--muted);line-height:1.55;display:block;max-width:15em}
 
 .timeline{position:relative;margin:0;padding:0 0 0 38px;list-style:none;display:flex;flex-direction:column;gap:6px}
 .timeline:before{content:"";position:absolute;left:5px;top:12px;bottom:12px;width:1px;background:var(--line)}
@@ -179,10 +172,7 @@ main.swap{opacity:0}
   .portrait{justify-self:start;width:170px;order:-1}
   .s2{grid-template-columns:1fr;gap:34px}
   .stick{position:static}
-  .figures{grid-template-columns:1fr 1fr}
-  .fig,.fig:first-child{padding:30px 18px 28px 0;border-right:0;border-bottom:1px solid var(--line)}
-  .fig:nth-child(odd){padding-right:18px}
-  .skills,.interns,.contact .wrap{grid-template-columns:1fr}
+        .skills,.interns,.contact .wrap{grid-template-columns:1fr}
   .contact .wrap{gap:40px}
   section.s{padding-top:84px}
   .band,.contact{margin-top:84px}
@@ -269,12 +259,7 @@ main.swap{opacity:0}
 <!-- ================= PRO ================= -->
 <div data-show="pro">
   <div class="wrap">
-    <div class="figures reveal">
-      <div class="fig"><b>200+</b><span data-i18n="f1">tenants Microsoft 365 intégrés à Hornetsecurity</span></div>
-      <div class="fig"><b class="t" data-i18n="f2b">Mai 2026</b><span data-i18n="f2">certification Hornetsecurity Certified Engineer</span></div>
-      <div class="fig"><b>2024</b><span data-i18n="f3">début de l'alternance chez TDI-services</span></div>
-      <div class="fig"><b class="t" data-i18n="f4b">Bachelor</b><span data-i18n="f4">Bac +3 ASR en cours au CESI Angoulême</span></div>
-    </div>
+    
   </div>
 
   <section class="s" id="parcours">
@@ -293,7 +278,7 @@ main.swap{opacity:0}
           <p data-i18n="p4p">Bac +3 · en alternance · CESI Angoulême</p>
         </li>
         <li class="done">
-          <div class="when">13 mai 2026 <span class="tag" data-i18n="t_ok">Obtenu</span></div>
+          <div class="when"><span data-i18n="p3d">13 mai 2026</span> <span class="tag" data-i18n="t_ok">Obtenu</span></div>
           <h3 data-i18n="p3h">Hornetsecurity Certified Engineer</h3>
           <p data-i18n="p3p">Sécurité de la messagerie, solutions Hornetsecurity, dépannage</p>
         </li>
@@ -383,7 +368,7 @@ main.swap{opacity:0}
 
 <script>
 (() => {
-  const EN = {"_title": "Charly Malaquis Dutin · Systems & Network Administration Apprentice", "_desc": "Charly Malaquis Dutin, systems and network administration apprentice (Microsoft 365, email security). Hornetsecurity Certified Engineer.", "alt": "Portrait of Charly Malaquis Dutin", "n1": "Education", "n2": "Experience", "n3": "Skills", "n4": "Contact", "sw_pro": "Pro", "sw_perso": "Personal", "role": "Systems and network administration apprentice, focused on Microsoft 365 and email security.", "c1": "BTS GMSI earned", "c2": "Bachelor ASR · 2026 → 2027", "c3": "Hornetsecurity Certified Engineer", "cta1": "Get in touch →", "cta2": "LinkedIn", "f1": "Microsoft 365 tenants onboarded to Hornetsecurity", "f2": "Hornetsecurity Certified Engineer certification", "f2b": "May 2026", "f3": "apprenticeship at TDI-services began", "f4": "Bachelor's degree (ASR) in progress at CESI Angoulême", "f4b": "Bachelor", "p_eye": "Education", "p_h": "A <em>work-study</em> path", "t_ok": "Earned", "t_now": "In progress", "t_goal": "Goal", "p1h": "Vocational Baccalaureate, Digital Systems", "p1p": "Lycée Charles-Augustin Coulomb", "p2h": "BTS GMSI, IT support and maintenance manager", "p2p": "Level 5 · 2-year work-study cycle · CESI Angoulême", "p3h": "Hornetsecurity Certified Engineer", "p3p": "May 13, 2026 · Email security, Hornetsecurity solutions, troubleshooting", "p4h": "Bachelor Systems and Network Administrator, 3rd year", "p4p": "Level 6 · work-study · CESI Angoulême", "p5h": "Professional Master: Infrastructure and Cybersecurity Manager for IT Systems", "p5p": "Level 7 · 2 years · CESI Angoulême, work-study", "e_eye": "Experience", "e_h": "Systems & network administration <em>apprentice</em>", "e_meta": "TDI-services · September 2024 → present · BU 365, team of 5", "m1": "Administration of customer tenants: Entra ID, Exchange Online.", "m2": "Recurring onboarding of customer tenants onto 365 Total Protection: over 200 so far.", "m3": "Email security: Hornetsecurity Certified Engineer (May 2026), complex environments and troubleshooting.", "m4": "Writing technical procedures for the team.", "st_h": "Internships", "st1h": "Charente Informatique Diffusion", "st1d": "11/20/2023 → 01/26/2024", "st1p": "IT technician intern: Datto BCDR backup, hardware and system repair, network infrastructure.", "st2h": "Leroy-Somer", "st2d": "03/07/2023 → 05/12/2023", "st2p": "IT technician intern: helpdesk, server installation, virtual machine deployment.", "k_eye": "Skills", "k_h": "From rack <em>to script</em>", "k1": "Systems & infrastructure", "k2": "Microsoft cloud", "k3": "Networks & security", "k4": "Automation & dev (AI-assisted)", "ct_eye": "Contact", "ct_h": "Let's <em>talk.</em>", "ct_lead": "Open to conversations and opportunities in systems and network administration, Microsoft 365 and email security.", "ct_mail": "Email", "ct_where": "Nouvelle-Aquitaine, France", "pe_eye": "Personal", "pe_h": "I love skiing.", "pe_p": "I'm more than my résumé. Here's a bit of me.", "pe_back": "← Back to the professional side", "pe_mail": "Say hello", "foot": "Made with care, Nouvelle-Aquitaine", "h_eye": "Apprenticeship · Systems and networks", "ph1": "Lavender field in Provence at sunset", "ph2": "Lavender field at dusk", "credit": "3D render · Blender"};
+  const EN = {"_title": "Charly Malaquis Dutin · Systems & Network Administration Apprentice", "_desc": "Charly Malaquis Dutin, systems and network administration apprentice (Microsoft 365, email security). Hornetsecurity Certified Engineer.", "alt": "Portrait of Charly Malaquis Dutin", "n1": "Education", "n2": "Experience", "n3": "Skills", "n4": "Contact", "sw_pro": "Pro", "sw_perso": "Personal", "role": "Systems and network administration apprentice, focused on Microsoft 365 and email security.", "c1": "BTS GMSI earned", "c2": "Bachelor ASR · 2026 → 2027", "c3": "Hornetsecurity Certified Engineer", "cta1": "Get in touch →", "cta2": "LinkedIn", "f1": "Microsoft 365 tenants onboarded to Hornetsecurity", "f2": "Hornetsecurity Certified Engineer certification", "f2b": "May 2026", "f3": "apprenticeship at TDI-services began", "f4": "Bachelor's degree (ASR) in progress at CESI Angoulême", "f4b": "Bachelor", "p_eye": "Education", "p_h": "A <em>work-study</em> path", "t_ok": "Earned", "t_now": "In progress", "t_goal": "Goal", "p1h": "Vocational Baccalaureate, Digital Systems", "p1p": "Lycée Charles-Augustin Coulomb", "p2h": "BTS GMSI, IT support and maintenance manager", "p2p": "Level 5 · 2-year work-study cycle · CESI Angoulême", "p3d": "May 13, 2026", "p3h": "Hornetsecurity Certified Engineer", "p3p": "May 13, 2026 · Email security, Hornetsecurity solutions, troubleshooting", "p4h": "Bachelor Systems and Network Administrator, 3rd year", "p4p": "Level 6 · work-study · CESI Angoulême", "p5h": "Professional Master: Infrastructure and Cybersecurity Manager for IT Systems", "p5p": "Level 7 · 2 years · CESI Angoulême, work-study", "e_eye": "Experience", "e_h": "Systems & network administration <em>apprentice</em>", "e_meta": "TDI-services · September 2024 → present · BU 365, team of 5", "m1": "Administration of customer tenants: Entra ID, Exchange Online.", "m2": "Recurring onboarding of customer tenants onto 365 Total Protection: over 200 so far.", "m3": "Email security: Hornetsecurity Certified Engineer (May 2026), complex environments and troubleshooting.", "m4": "Writing technical procedures for the team.", "st_h": "Internships", "st1h": "Charente Informatique Diffusion", "st1d": "11/20/2023 → 01/26/2024", "st1p": "IT technician intern: Datto BCDR backup, hardware and system repair, network infrastructure.", "st2h": "Leroy-Somer", "st2d": "03/07/2023 → 05/12/2023", "st2p": "IT technician intern: helpdesk, server installation, virtual machine deployment.", "k_eye": "Skills", "k_h": "From rack <em>to script</em>", "k1": "Systems & infrastructure", "k2": "Microsoft cloud", "k3": "Networks & security", "k4": "Automation & dev (AI-assisted)", "ct_eye": "Contact", "ct_h": "Let's <em>talk.</em>", "ct_lead": "Open to conversations and opportunities in systems and network administration, Microsoft 365 and email security.", "ct_mail": "Email", "ct_where": "Nouvelle-Aquitaine, France", "pe_eye": "Personal", "pe_h": "I love skiing.", "pe_p": "I'm more than my résumé. Here's a bit of me.", "pe_back": "← Back to the professional side", "pe_mail": "Say hello", "foot": "Made with care, Nouvelle-Aquitaine", "h_eye": "Apprenticeship · Systems and networks", "ph1": "Lavender field in Provence at sunset", "ph2": "Lavender field at dusk"};
   const body = document.body, main = document.getElementById('top'), hd = document.getElementById('hd');
   const els = [...document.querySelectorAll('[data-i18n]')];
   els.forEach(el => { el.dataset.fr = el.hasAttribute('data-i18n-alt') && !el.matches('img') ? (el.getAttribute('aria-label') || '') : el.innerHTML; });
