@@ -1,600 +1,471 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Charly Malaquis Dutin · Alternant administrateur systèmes et réseaux</title>
 <meta name="description" content="Charly Malaquis Dutin, alternant administrateur systèmes et réseaux (Microsoft 365, sécurité de la messagerie). Hornetsecurity Certified Engineer.">
-<meta property="og:title" content="Charly Malaquis Dutin · Administrateur systèmes et réseaux (alternance)">
-<meta property="og:description" content="Microsoft 365, sécurité de la messagerie, Hornetsecurity Certified Engineer.">
+<meta property="og:title" content="Charly Malaquis Dutin · Alternant administrateur systèmes et réseaux">
+<meta property="og:description" content="Alternant administrateur systèmes et réseaux, orienté Microsoft 365 et sécurité de la messagerie.">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://charly-it.github.io/">
+<meta property="og:image" content="https://charly-it.github.io/photo.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-/* Un seul univers sombre : la scène 3D vit derrière tout le contenu.
-   Mise en page : colonnes asymétriques qui alternent gauche / droite pour laisser respirer la forme 3D. */
-:root {
-  --bg: #07070A;
-  --panel: rgba(17, 17, 22, 0.72);
-  --line: rgba(139, 92, 246, 0.22);
-  --text: #F4F4F6;
-  --muted: #A6A6B4;
-  --faint: #6E6E7E;
-  --violet: #8B5CF6;
-  --cyan: #22D3EE;
-  --ok: #34D399;
-  --warn: #FBBF24;
-  --display: 'Unbounded', 'Segoe UI', system-ui, sans-serif;
-  --body: 'Manrope', 'Segoe UI', system-ui, sans-serif;
-  --mono: 'JetBrains Mono', 'Cascadia Code', Consolas, monospace;
-  color-scheme: dark;
+:root{
+  --serif:'Cormorant Garamond','Cormorant',Garamond,Georgia,serif;
+  --sans:'Jost','Helvetica Neue',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --ease:cubic-bezier(.22,1,.36,1);
+  --cypress:#1D2A20; --cypress-d:#121A14; --ivory:#F4EEE1;
 }
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.65 var(--body); overflow-x: hidden; }
-::selection { background: var(--violet); color: #fff; }
-a { color: inherit; }
-:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; border-radius: 6px; }
-
-#scene { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; display: block; }
-.grain { position: fixed; inset: 0; z-index: 1; pointer-events: none; opacity: .06;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
-.vignette { position: fixed; inset: 0; z-index: 1; pointer-events: none;
-  background: radial-gradient(ellipse at 50% 40%, transparent 40%, rgba(7,7,10,.85) 100%); }
-
-/* Curseur lumineux */
-.glow { position: fixed; left: 0; top: 0; width: 420px; height: 420px; margin: -210px 0 0 -210px; border-radius: 50%;
-  pointer-events: none; z-index: 1; background: radial-gradient(circle, rgba(139,92,246,.16), rgba(34,211,238,.06) 40%, transparent 70%);
-  transform: translate3d(-500px,-500px,0); }
-
-/* Barre de progression + navigation */
-.progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; z-index: 20; transform-origin: 0 50%; transform: scaleX(0);
-  background: linear-gradient(90deg, var(--violet), var(--cyan)); }
-nav.top { position: fixed; top: 16px; left: 50%; transform: translateX(-50%); z-index: 20; display: flex; gap: 4px; padding: 6px;
-  border: 1px solid var(--line); border-radius: 999px; background: rgba(10,10,14,.6); backdrop-filter: blur(14px); }
-nav.top a { text-decoration: none; font: 600 13px var(--body); color: var(--muted); padding: 8px 14px; border-radius: 999px; transition: color .2s, background .2s; }
-nav.top a:hover, nav.top a.on { color: var(--text); background: rgba(139,92,246,.18); }
-.brand { position: fixed; top: 22px; left: 28px; z-index: 20; font: 700 15px var(--display); letter-spacing: .5px; text-decoration: none; }
-.brand span { color: var(--cyan); }
-
-main { position: relative; z-index: 2; }
-section { min-height: 100vh; display: flex; align-items: center; padding: 120px max(24px, 6vw); }
-.wrap { width: 100%; max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px; }
-.left { grid-column: 1 / span 7; }
-.right { grid-column: 6 / span 7; }
-.wide { grid-column: 1 / -1; }
-
-.eyebrow { font: 600 12px var(--mono); letter-spacing: 3px; text-transform: uppercase; color: var(--cyan); display: flex; align-items: center; gap: 12px; }
-.eyebrow::before { content: ""; width: 34px; height: 1px; background: linear-gradient(90deg, var(--violet), var(--cyan)); }
-h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; }
-h2 { font-size: clamp(34px, 5.2vw, 64px); line-height: 1.02; letter-spacing: -1.5px; margin: 16px 0 22px; }
-.grad { background: linear-gradient(100deg, var(--violet), var(--cyan) 70%); -webkit-background-clip: text; background-clip: text; color: transparent; }
-.lead { color: var(--muted); font-size: 18px; max-width: 60ch; }
-
-/* Hero */
-#accueil { min-height: 100vh; padding-top: 140px; }
-.hello { font: 500 14px var(--mono); color: var(--muted); }
-.hello b { color: var(--cyan); font-weight: 600; }
-h1 { font-size: clamp(64px, 13vw, 176px); line-height: .9; letter-spacing: -4px; margin: 18px 0 14px; }
-h1 .ch { display: inline-block; }
-.role { font: 600 clamp(18px, 2.2vw, 26px)/1.35 var(--body); max-width: 30ch; }
-.typed { margin-top: 26px; font: 500 15px var(--mono); color: var(--muted); min-height: 1.6em; }
-.typed .p { color: var(--cyan); } .typed .cur { display: inline-block; width: 9px; height: 1.1em; vertical-align: -3px; background: var(--cyan); margin-left: 3px; animation: blink 1s steps(1) infinite; }
-@keyframes blink { 50% { opacity: 0; } }
-.chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 30px; }
-.chip { font: 600 13px var(--body); padding: 8px 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--panel); backdrop-filter: blur(10px); display: inline-flex; align-items: center; gap: 8px; }
-.chip i { width: 8px; height: 8px; border-radius: 50%; background: var(--ok); box-shadow: 0 0 12px var(--ok); }
-.chip i.c { background: var(--cyan); box-shadow: 0 0 12px var(--cyan); }
-.chip i.v { background: var(--violet); box-shadow: 0 0 12px var(--violet); }
-.cta { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 38px; }
-.btn { position: relative; display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font: 700 15px var(--body); padding: 15px 24px; border-radius: 14px;
-  border: 1px solid var(--line); background: rgba(20,20,26,.7); transition: border-color .25s; will-change: transform; }
-.btn.main { border: 0; background: linear-gradient(100deg, var(--violet), var(--cyan)); color: #07070A; }
-.btn:hover { border-color: var(--cyan); }
-.scrollhint { position: absolute; left: 50%; bottom: 28px; transform: translateX(-50%); font: 500 11px var(--mono); letter-spacing: 3px; color: var(--faint); display: flex; flex-direction: column; align-items: center; gap: 10px; }
-.scrollhint span { width: 1px; height: 46px; background: linear-gradient(var(--cyan), transparent); animation: drip 1.8s ease-in-out infinite; transform-origin: top; }
-@keyframes drip { 0% { transform: scaleY(0); } 50% { transform: scaleY(1); } 100% { transform: scaleY(1); opacity: 0; } }
-
-/* Chiffres */
-.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 56px; }
-.stat { padding: 18px 20px; border-radius: 16px; border: 1px solid var(--line); background: var(--panel); backdrop-filter: blur(12px); }
-.stat b { display: block; font: 700 30px var(--display); font-variant-numeric: tabular-nums; }
-.stat span { color: var(--muted); font-size: 13px; }
-
-/* Panneaux de verre */
-.glass { border: 1px solid var(--line); border-radius: 24px; background: var(--panel); backdrop-filter: blur(16px); padding: clamp(22px, 3vw, 38px); }
-
-/* Parcours */
-.timeline { display: grid; gap: 16px; margin-top: 10px; }
-.step { position: relative; display: grid; grid-template-columns: 120px 1fr auto; gap: 18px; align-items: center; padding: 22px 24px; border-radius: 18px; border: 1px solid var(--line); background: var(--panel); backdrop-filter: blur(14px); transform-style: preserve-3d; will-change: transform; }
-.step .yr { font: 600 13px var(--mono); color: var(--faint); }
-.step h3 { font-size: 22px; }
-.step p { margin: 4px 0 0; color: var(--muted); font-size: 14px; }
-.tag { font: 700 11px var(--mono); letter-spacing: 1.5px; padding: 6px 10px; border-radius: 999px; white-space: nowrap; }
-.t-ok { color: var(--ok); background: rgba(52,211,153,.12); } .t-now { color: var(--cyan); background: rgba(34,211,238,.12); } .t-goal { color: #C4B5FD; background: rgba(139,92,246,.16); }
-.step.now { border-color: rgba(34,211,238,.5); box-shadow: 0 0 0 1px rgba(34,211,238,.15), 0 20px 60px -20px rgba(34,211,238,.35); }
-.alt { margin-top: 18px; font: 500 14px var(--mono); color: var(--muted); }
-
-/* Expérience */
-.missions { list-style: none; padding: 0; margin: 26px 0 0; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-.missions li { padding: 18px 18px 18px 20px; border-radius: 16px; border: 1px solid var(--line); background: rgba(12,12,16,.55); position: relative; overflow: hidden; }
-.missions li::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: linear-gradient(var(--violet), var(--cyan)); }
-.missions b { display: block; font: 700 14px var(--body); margin-bottom: 4px; }
-.missions span { color: var(--muted); font-size: 14px; }
-.meta { color: var(--faint); font: 500 13px var(--mono); }
-
-/* Compétences */
-.skills { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 10px; }
-.skill { padding: 22px; border-radius: 18px; border: 1px solid var(--line); background: var(--panel); backdrop-filter: blur(14px); }
-.skill h3 { font-size: 15px; letter-spacing: .3px; margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
-.skill h3 em { font-style: normal; font: 600 11px var(--mono); color: var(--cyan); }
-.pills { display: flex; flex-wrap: wrap; gap: 8px; }
-.pills span { font: 600 13px var(--body); padding: 7px 12px; border-radius: 10px; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.07); transition: transform .2s, border-color .2s, background .2s; }
-.pills span:hover { transform: translateY(-3px); border-color: var(--cyan); background: rgba(34,211,238,.08); }
-.marquee { grid-column: 1 / -1; overflow: hidden; margin-top: 36px; mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); }
-.marquee div { display: flex; gap: 46px; width: max-content; animation: slide 40s linear infinite; font: 800 clamp(28px, 4vw, 52px) var(--display); color: transparent; -webkit-text-stroke: 1px rgba(166,166,180,.35); white-space: nowrap; }
-.marquee div b { color: rgba(139,92,246,.6); -webkit-text-stroke: 0; font-weight: 800; }
-@keyframes slide { to { transform: translateX(-50%); } }
-
-/* Contact */
-#contact .glass { text-align: left; }
-.big { font: 800 clamp(40px, 7vw, 96px)/.95 var(--display); letter-spacing: -2.5px; margin: 18px 0 26px; }
-footer { position: relative; z-index: 2; padding: 30px max(24px, 6vw) 40px; color: var(--faint); font: 500 13px var(--mono); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
-
-@media (max-width: 900px) {
-  .left, .right { grid-column: 1 / -1; }
-  .stats { grid-template-columns: repeat(2, 1fr); }
-  .missions, .skills, .projects { grid-template-columns: 1fr; }
-  .step { grid-template-columns: 1fr; }
-  nav.top { display: none; }
-  h1 { letter-spacing: -2px; }
+body[data-mode="pro"]{
+  --paper:#F4EEE1; --paper2:#EBE3D0; --ink:#232A25; --muted:#5F665B; --line:rgba(35,42,37,.17);
+  --gold:#9C7A3F; --lav:#6F61A0; --soft:rgba(111,97,160,.09); --hd-ink:#F4EEE1;
 }
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  .marquee div, .typed .cur, .scrollhint span { animation: none; }
+body[data-mode="perso"]{
+  --paper:#0F1611; --paper2:#151E18; --ink:#F2EBDC; --muted:#B7B5A3; --line:rgba(242,235,220,.17);
+  --gold:#CBA86C; --lav:#B2A5DE; --soft:rgba(178,165,222,.1); --hd-ink:#F2EBDC;
 }
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:var(--sans);font-weight:400;font-size:16.5px;line-height:1.7;color:var(--ink);background:var(--paper);
+  transition:background-color .9s ease,color .6s ease;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+a{color:inherit}
+img{max-width:100%}
+.wrap{width:min(1120px,100% - 56px);margin-inline:auto}
+h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.005em;margin:0}
+h1 em,h2 em{font-style:italic;font-weight:300}
+.eyebrow{display:flex;align-items:center;gap:14px;font-family:var(--sans);font-size:11.5px;font-weight:500;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);margin:0 0 18px}
+.eyebrow:before{content:"";width:34px;height:1px;background:currentColor;opacity:.8}
 
-/* Photo, langue, contact, stages */
-h1 { font-size: clamp(56px, 9.5vw, 140px); white-space: nowrap; letter-spacing: -3px; }
-h1 .ch { display: inline-block; }
-.avatar { width: 84px; height: 84px; border-radius: 50%; display: block; border: 1px solid var(--line); background: #fff; object-fit: cover; box-shadow: 0 0 0 4px rgba(139,92,246,.12); }
-.avatar.lg { width: 148px; height: 148px; margin-bottom: 22px; }
-.who { display: flex; align-items: center; gap: 18px; margin-bottom: 6px; }
-.fullname { font: 600 14px var(--mono); color: var(--muted); }
-.fullname b { color: var(--text); font-weight: 600; }
-.lang { position: fixed; top: 18px; right: 24px; z-index: 21; display: inline-flex; padding: 4px; border: 1px solid var(--line); border-radius: 999px; background: rgba(10,10,14,.6); backdrop-filter: blur(14px); }
-.lang button { font: 700 12px var(--mono); letter-spacing: 1px; color: var(--muted); background: none; border: 0; padding: 7px 12px; border-radius: 999px; cursor: pointer; }
-.lang button[aria-pressed="true"] { color: var(--text); background: rgba(139,92,246,.28); }
-.sub { font: 700 13px var(--mono); letter-spacing: 2px; text-transform: uppercase; color: var(--cyan); margin: 38px 0 0; }
-.missions.small { margin-top: 14px; grid-template-columns: repeat(2, 1fr); }
-.contactlist { display: grid; gap: 12px; margin-top: 26px; max-width: 520px; }
-.contactlist a { display: flex; align-items: center; justify-content: space-between; gap: 16px; text-decoration: none; padding: 14px 18px; border-radius: 14px; border: 1px solid var(--line); background: rgba(20,20,26,.7); font: 600 15px var(--body); transition: border-color .25s; }
-.contactlist a:hover { border-color: var(--cyan); }
-.contactlist small { font: 500 12px var(--mono); color: var(--faint); }
-.where { margin-top: 18px; font: 500 14px var(--mono); color: var(--muted); }
-@media (max-width: 900px) { .missions.small { grid-template-columns: 1fr; } .lang { top: 14px; right: 14px; } .brand { display: none; } }
+/* ---------- en-tête ---------- */
+.top{position:fixed;inset:0 0 auto 0;z-index:30;color:var(--hd-ink);transition:background-color .6s ease,color .6s ease,box-shadow .6s ease,transform 1s var(--ease);animation:down 1.2s var(--ease) both}
+.top.solid{background:color-mix(in srgb,var(--paper) 88%,transparent);color:var(--ink);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--line)}
+.top .wrap{display:flex;align-items:center;gap:22px;height:72px}
+.brand{font-family:var(--serif);font-weight:500;font-size:21px;letter-spacing:.02em;text-decoration:none;white-space:nowrap}
+.brand i{font-weight:300}
+.nav{display:flex;gap:30px;margin-left:26px}
+.nav a{font-size:11.5px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;opacity:.78;transition:opacity .3s}
+.nav a:hover{opacity:1}
+.spacer{flex:1}
+.seg{display:inline-flex;border:1px solid color-mix(in srgb,currentColor 38%,transparent);border-radius:999px;padding:2px}
+.seg button{font:inherit;font-size:11px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;border:0;background:transparent;color:inherit;opacity:.7;padding:6px 14px;border-radius:999px;cursor:pointer;transition:background .5s var(--ease),color .4s,opacity .3s}
+.seg button:hover{opacity:1}
+.seg button[aria-pressed="true"]{background:var(--ivory);color:var(--cypress);opacity:1}
+.top.solid .seg button[aria-pressed="true"]{background:var(--cypress);color:var(--ivory)}
+body[data-mode="perso"] .top.solid .seg button[aria-pressed="true"]{background:var(--ivory);color:var(--cypress)}
+.seg.lang button{padding:6px 11px}
+button:focus-visible,.btn:focus-visible,a:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+
+/* ---------- héros ---------- */
+.hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;color:#F4EEE1;overflow:hidden;isolation:isolate;background:var(--cypress-d)}
+.hero .ph{position:absolute;inset:-4% 0 -4% 0;z-index:-2;background-size:cover;background-position:50% 55%;will-change:transform;animation:kb 40s ease-in-out infinite alternate}
+@keyframes kb{from{scale:1}to{scale:1.06}}
+.hero:after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:linear-gradient(90deg,rgba(14,22,16,.74) 0%,rgba(14,22,16,.46) 42%,rgba(14,22,16,.06) 78%),linear-gradient(180deg,rgba(14,22,16,.16) 0%,rgba(14,22,16,0) 26%,rgba(14,22,16,.55) 100%)}
+#h-pro .ph{background-image:url(bg/field.webp)}
+#h-perso .ph{background-image:url(bg/dusk.webp);background-position:50% 60%}
+@media (max-width:820px){#h-pro .ph{background-image:url(bg/field-m.webp)}#h-perso .ph{background-image:url(bg/dusk-m.webp)}}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:48px;align-items:end;padding:130px 0 72px}
+.hero h1{font-size:clamp(50px,8.4vw,118px);line-height:.96;font-weight:300;margin:0}
+.hero h1 em{display:block;font-weight:400}
+.role{font-size:clamp(16px,1.7vw,19px);font-weight:300;line-height:1.7;color:rgba(244,238,225,.88);margin:26px 0 0;max-width:30em}
+.chips{display:flex;flex-wrap:wrap;gap:10px 12px;margin:26px 0 0;padding:0;list-style:none}
+.chips li{font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;padding:8px 14px;border:1px solid rgba(244,238,225,.42);color:rgba(244,238,225,.95);background:rgba(14,22,16,.28);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
+.btn{display:inline-flex;align-items:center;gap:10px;font:inherit;font-size:11.5px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;padding:15px 28px;border:1px solid rgba(244,238,225,.55);color:#F4EEE1;background:transparent;cursor:pointer;transition:background .5s var(--ease),color .4s,border-color .4s,transform .6s var(--ease)}
+.btn:hover{transform:translateY(-2px);background:rgba(244,238,225,.12)}
+.btn.primary{background:#F4EEE1;color:var(--cypress);border-color:#F4EEE1}
+.btn.primary:hover{background:#fff}
+.portrait{justify-self:end;position:relative;width:min(100%,300px);aspect-ratio:3/4}
+.portrait:before{content:"";position:absolute;inset:-12px;border:1px solid rgba(214,184,126,.7);border-radius:999px 999px 4px 4px}
+.portrait img{width:100%;height:100%;object-fit:cover;object-position:50% 22%;border-radius:999px 999px 2px 2px;display:block;box-shadow:0 30px 70px rgba(0,0,0,.5);filter:saturate(.94)}
+.hero .credit{position:absolute;right:28px;bottom:16px;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(244,238,225,.6)}
+.rise{animation:rise 1.5s var(--ease) both}
+@keyframes rise{from{opacity:0;transform:translateY(34px)}to{opacity:1;transform:none}}
+@keyframes down{from{transform:translateY(-100%);opacity:0}to{transform:none;opacity:1}}
+.hero .d1{animation-delay:.25s}.hero .d2{animation-delay:.4s}.hero .d3{animation-delay:.55s}.hero .d4{animation-delay:.7s}.hero .d5{animation-delay:.5s}
+
+/* ---------- sections ---------- */
+section.s{padding:112px 0 0}
+.s2{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.5fr);gap:64px;align-items:start}
+.s h2{font-size:clamp(36px,4.6vw,62px);line-height:1.05;font-weight:400}
+.s h2 em{color:var(--lav)}
+body[data-mode="perso"] .s h2 em{color:var(--lav)}
+.stick{position:sticky;top:110px}
+.sub{font-size:11.5px;font-weight:500;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);margin:46px 0 18px}
+
+.figures{display:grid;grid-template-columns:repeat(4,1fr);margin-top:-1px;border-bottom:1px solid var(--line)}
+.fig{padding:44px 28px 40px 0;border-right:1px solid var(--line);padding-left:28px}
+.fig:first-child{padding-left:0}
+.fig:last-child{border-right:0}
+.fig b{display:block;font-family:var(--serif);font-weight:300;font-size:clamp(46px,5.4vw,72px);line-height:1;color:var(--lav);margin-bottom:12px}
+.fig b.t{font-style:italic;font-size:clamp(34px,4vw,50px);padding-top:.25em}
+.fig span{font-size:13.5px;color:var(--muted);line-height:1.55;display:block;max-width:15em}
+
+.timeline{position:relative;margin:0;padding:0 0 0 38px;list-style:none;display:flex;flex-direction:column;gap:6px}
+.timeline:before{content:"";position:absolute;left:5px;top:12px;bottom:12px;width:1px;background:var(--line)}
+.timeline li{position:relative;padding:20px 0 22px;border-bottom:1px solid var(--line)}
+.timeline li:last-child{border-bottom:0}
+.timeline li:before{content:"";position:absolute;left:-38px;top:30px;width:11px;height:11px;transform:rotate(45deg);background:var(--paper);border:1px solid var(--gold);transition:background-color .6s}
+.timeline li.done:before{background:var(--gold)}
+.when{display:flex;flex-wrap:wrap;gap:12px;align-items:center;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:500;margin-bottom:6px}
+.tag{font-size:10.5px;letter-spacing:.16em;padding:2px 10px;border:1px solid var(--lav);color:var(--lav)}
+.timeline h3{font-size:clamp(22px,2.4vw,29px);line-height:1.2;font-weight:500}
+.timeline p{margin:6px 0 0;color:var(--muted);font-size:15px}
+
+.job h3{font-size:clamp(32px,3.6vw,44px);font-weight:400;font-style:italic}
+.job .meta{color:var(--muted);font-size:13px;letter-spacing:.1em;text-transform:uppercase;margin:8px 0 22px;font-weight:500}
+.job ul,.intern ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:11px}
+.job li{position:relative;padding-left:30px;font-size:16.5px}
+.job li:before{content:"";position:absolute;left:0;top:.85em;width:16px;height:1px;background:var(--gold)}
+.interns{display:grid;grid-template-columns:1fr 1fr;gap:34px;margin-top:6px}
+.intern{padding-top:20px;border-top:1px solid var(--line)}
+.intern h3{font-size:25px;font-weight:500}
+.intern .d{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:5px 0 12px;font-weight:500}
+.intern p{margin:0;color:var(--muted);font-size:15px}
+
+.skills{display:grid;grid-template-columns:1fr 1fr;gap:0 44px}
+.skill{padding:26px 0 30px;border-top:1px solid var(--line)}
+.skill h3{font-family:var(--serif);font-size:25px;font-weight:500;margin-bottom:14px}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pills span{font-size:13px;padding:5px 13px;border:1px solid var(--line);color:var(--ink);transition:border-color .4s,background-color .4s}
+.pills span:hover{border-color:var(--lav);background:var(--soft)}
+
+/* ---------- bandeaux photo ---------- */
+.band{position:relative;height:clamp(300px,62vh,660px);margin:112px 0 0;overflow:hidden;background:var(--cypress-d)}
+.band .ph{position:absolute;inset:-9% 0 -9% 0;background-size:cover;background-position:50% 50%;will-change:transform}
+.band:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(14,22,16,.18),rgba(14,22,16,0) 30%,rgba(14,22,16,.4))}
+.band figcaption{position:absolute;left:max(28px,calc((100% - 1120px)/2));bottom:20px;z-index:2;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:rgba(244,238,225,.85);display:flex;gap:14px;align-items:center}
+.band figcaption:before{content:"";width:34px;height:1px;background:currentColor}
+.b1 .ph{background-image:url(bg/cypres.webp)}
+.b2 .ph{background-image:url(bg/bastide.webp)}
+
+/* ---------- contact ---------- */
+.contact{margin-top:112px;background:var(--cypress);color:#F4EEE1;padding:104px 0 96px;position:relative;overflow:hidden}
+.contact:before{content:"";position:absolute;inset:0;background:radial-gradient(70% 90% at 85% 10%,rgba(111,97,160,.2),transparent 70%);pointer-events:none}
+.contact .wrap{position:relative;display:grid;grid-template-columns:1.1fr 1fr;gap:70px;align-items:start}
+.contact .eyebrow{color:#D6B87E}
+.contact h2{font-size:clamp(44px,6vw,84px);line-height:1;font-weight:300;margin-bottom:24px}
+.contact h2 em{color:#C3B8EC}
+.contact p.lead{color:rgba(244,238,225,.82);margin:0 0 8px;font-size:17.5px;font-weight:300;max-width:30em}
+.where{margin:20px 0 0;color:rgba(244,238,225,.6);font-size:12px;letter-spacing:.2em;text-transform:uppercase}
+.links{display:flex;flex-direction:column;border-top:1px solid rgba(244,238,225,.22)}
+.links a{display:flex;justify-content:space-between;align-items:baseline;gap:12px;text-decoration:none;padding:22px 4px;border-bottom:1px solid rgba(244,238,225,.22);transition:padding .6s var(--ease),color .3s}
+.links a span{font-family:var(--serif);font-size:clamp(22px,2.6vw,31px)}
+.links a:hover{padding-left:16px;color:#D6B87E}
+.links small{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(244,238,225,.6)}
+
+/* ---------- perso ---------- */
+#h-perso .wrap{grid-template-columns:minmax(0,1fr)}
+#h-perso h1{font-size:clamp(60px,12vw,170px);line-height:.92;font-style:italic;font-weight:300}
+#h-perso p.lead{font-size:clamp(18px,2.2vw,24px);font-weight:300;color:rgba(244,238,225,.88);max-width:26em;margin:24px 0 0}
+#h-perso .eyebrow{color:#D6B87E}
+
+footer{margin-top:0;background:var(--cypress-d);color:rgba(244,238,225,.7);padding:26px 0;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+body[data-mode="perso"] .contact{display:none}
+
+/* ---------- bascule + apparitions ---------- */
+body[data-mode="pro"] [data-show="perso"],body[data-mode="perso"] [data-show="pro"]{display:none!important}
+main{transition:opacity .5s ease}
+main.swap{opacity:0}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 1.2s var(--ease),transform 1.2s var(--ease);transition-delay:var(--d,0s)}
+.reveal.in{opacity:1;transform:none}
+
+@media (max-width:900px){
+  .hero:after{background:linear-gradient(180deg,rgba(14,22,16,.4),rgba(14,22,16,.5) 38%,rgba(14,22,16,.82))}
+  .nav{display:none}
+  .hero .wrap{grid-template-columns:1fr;gap:40px;padding:112px 0 56px}
+  .portrait{justify-self:start;width:170px;order:-1}
+  .s2{grid-template-columns:1fr;gap:34px}
+  .stick{position:static}
+  .figures{grid-template-columns:1fr 1fr}
+  .fig,.fig:first-child{padding:30px 18px 28px 0;border-right:0;border-bottom:1px solid var(--line)}
+  .fig:nth-child(odd){padding-right:18px}
+  .skills,.interns,.contact .wrap{grid-template-columns:1fr}
+  .contact .wrap{gap:40px}
+  section.s{padding-top:84px}
+  .band,.contact{margin-top:84px}
+  .top .wrap{gap:10px;height:62px}
+  .brand{font-size:18px}
+  .seg button{padding:6px 11px}
+  .hero .credit{display:none}
+}
+@media (max-width:520px){
+  .brand{display:none}
+  .spacer{display:none}
+  .top .wrap{justify-content:space-between}
+  .btn{padding:14px 20px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
+  html{scroll-behavior:auto}
+}
 </style>
 </head>
-<body>
-<canvas id="scene" aria-hidden="true"></canvas>
-<div class="vignette"></div>
-<div class="grain"></div>
-<div class="glow" id="glow"></div>
-<div class="progress" id="progress"></div>
+<body data-mode="pro">
 
-<a class="brand" href="#accueil">CHARLY<span>.</span>IT</a>
-<nav class="top" aria-label="Sections">
-  <a href="#accueil" data-s="0" data-i18n="n0">Accueil</a>
-  <a href="#parcours" data-s="1" data-i18n="n1">Parcours</a>
-  <a href="#experience" data-s="2" data-i18n="n2">Expérience</a>
-  <a href="#competences" data-s="3" data-i18n="n3">Compétences</a>
-  <a href="#contact" data-s="4" data-i18n="n4">Contact</a>
-</nav>
-<div class="lang" role="group" aria-label="Langue / Language">
-  <button type="button" data-l="fr" aria-pressed="true">FR</button>
-  <button type="button" data-l="en" aria-pressed="false">EN</button>
-</div>
+<header class="top" id="hd">
+  <div class="wrap">
+    <a class="brand" href="#top">Charly <i>Malaquis Dutin</i></a>
+    <nav class="nav" data-show="pro" aria-label="Sections">
+      <a href="#parcours" data-i18n="n1">Parcours</a>
+      <a href="#experience" data-i18n="n2">Expérience</a>
+      <a href="#competences" data-i18n="n3">Compétences</a>
+      <a href="#contact" data-i18n="n4">Contact</a>
+    </nav>
+    <span class="spacer"></span>
+    <div class="seg mode" role="group" aria-label="Pro / Perso">
+      <button type="button" data-mode="pro" aria-pressed="true" data-i18n="sw_pro">Pro</button>
+      <button type="button" data-mode="perso" aria-pressed="false" data-i18n="sw_perso">Perso</button>
+    </div>
+    <div class="seg lang" role="group" aria-label="Langue">
+      <button type="button" data-l="fr" aria-pressed="true">FR</button>
+      <button type="button" data-l="en" aria-pressed="false">EN</button>
+    </div>
+  </div>
+</header>
 
-<main>
-  <!-- 00 · Accueil -->
-  <section id="accueil" data-shape="0">
-    <div class="wrap">
-      <div class="left">
-        <div class="who">
-          <img class="avatar" src="photo.webp" width="84" height="84" alt="Portrait de Charly Malaquis Dutin" data-i18n-alt="alt_photo">
-          <div class="fullname"><b>Charly Malaquis Dutin</b></div>
-        </div>
-        <div class="hello">PS&gt; <b>whoami</b></div>
-        <h1 id="name" aria-label="Charly"><span class="grad">Charly</span></h1>
-        <p class="role" data-i18n="role">Alternant administrateur systèmes et réseaux, orienté Microsoft 365 et sécurité de la messagerie.</p>
-        <div class="typed" aria-live="polite"><span class="p">PS&gt;</span> <span id="typed">Get-Certification -Editeur Hornetsecurity</span><span class="cur"></span></div>
-        <div class="chips">
-          <span class="chip"><i></i><span data-i18n="c1">BTS GMSI obtenu</span></span>
-          <span class="chip"><i class="c"></i><span data-i18n="c2">Bachelor ASR · 2026 → 2027</span></span>
-          <span class="chip"><i class="v"></i><span>Hornetsecurity Certified Engineer</span></span>
-        </div>
-        <div class="cta">
-          <a class="btn main magnet" href="#contact" data-i18n="cta1">Me contacter →</a>
-          <a class="btn magnet" href="https://www.linkedin.com/in/charly-malaquis-dutin-4028ab291" rel="noopener">LinkedIn</a>
-        </div>
-      </div>
-      <div class="stats wide">
-        <div class="stat"><b data-count="200" data-suffix="+">200+</b><span data-i18n="s1">tenants Microsoft 365 intégrés à Hornetsecurity</span></div>
-        <div class="stat"><b data-i18n="s2b">Mai 2026</b><span data-i18n="s2">certification Hornetsecurity Certified Engineer</span></div>
-        <div class="stat"><b>2024</b><span data-i18n="s3">début de l'alternance chez TDI-services</span></div>
-        <div class="stat"><b data-i18n="s4b">Bac +3</b><span data-i18n="s4">Bachelor ASR en cours au CESI Angoulême</span></div>
+<main id="top">
+
+<!-- ================= HÉROS PRO ================= -->
+<section class="hero" id="h-pro" data-show="pro">
+  <div class="ph" data-par="0.12" role="img" aria-label="Champ de lavande en Provence au coucher du soleil (rendu 3D)" data-i18n-alt="ph1"></div>
+  <div class="wrap">
+    <div>
+      <p class="eyebrow rise d1" style="color:#D6B87E" data-i18n="h_eye">Alternance · Systèmes et réseaux</p>
+      <h1 class="rise d2">Charly <em>Malaquis Dutin</em></h1>
+      <p class="role rise d3" data-i18n="role">Alternant administrateur systèmes et réseaux, orienté Microsoft 365 et sécurité de la messagerie.</p>
+      <ul class="chips rise d4">
+        <li data-i18n="c1">BTS GMSI obtenu</li>
+        <li data-i18n="c2">Bachelor ASR · 2026 → 2027</li>
+        <li data-i18n="c3">Hornetsecurity Certified Engineer</li>
+      </ul>
+      <div class="cta rise d4">
+        <a class="btn primary" href="#contact" data-i18n="cta1">Me contacter →</a>
+        <a class="btn" href="https://www.linkedin.com/in/charly-malaquis-dutin-4028ab291" rel="noopener" data-i18n="cta2">LinkedIn</a>
       </div>
     </div>
-    <div class="scrollhint"><span data-i18n="scroll">DÉFILER</span><span></span></div>
-  </section>
+    <div class="portrait rise d5"><img src="photo.webp" width="300" height="400" alt="Portrait de Charly Malaquis Dutin" data-i18n-alt="alt"></div>
+  </div>
+  <span class="credit" data-i18n="credit">Rendu 3D · Blender</span>
+</section>
 
-  <!-- 01 · Parcours -->
-  <section id="parcours" data-shape="1">
-    <div class="wrap">
-      <div class="right glass reveal">
-        <div class="eyebrow" data-i18n="p_eyebrow">01 · Parcours</div>
-        <h2 data-i18n="p_h2">Un parcours <span class="grad">en alternance</span></h2>
-        <div class="timeline">
-          <div class="step tilt"><div class="yr">2024</div><div><h3 data-i18n="p1h">Bac pro Systèmes numériques</h3><p data-i18n="p1p">Lycée Charles-Augustin Coulomb</p></div><span class="tag t-ok" data-i18n="t_ok">OBTENU</span></div>
-          <div class="step tilt"><div class="yr">2024 → 2026</div><div><h3>BTS GMSI</h3><p data-i18n="p2p">Gestionnaire en maintenance et support informatique (bac +2), cycle en 2 ans en alternance · CESI Angoulême</p></div><span class="tag t-ok" data-i18n="t_ok">OBTENU</span></div>
-          <div class="step tilt"><div class="yr" data-i18n="p3y">13 mai 2026</div><div><h3>Hornetsecurity Certified Engineer</h3><p data-i18n="p3p">Sécurité de la messagerie, solutions Hornetsecurity, dépannage</p></div><span class="tag t-ok" data-i18n="t_ok">OBTENU</span></div>
-          <div class="step tilt now"><div class="yr">2026 → 2027</div><div><h3>Bachelor ASR</h3><p data-i18n="p4p">Bachelor administrateur·trice systèmes et réseaux, 3e année en alternance (bac +3) · CESI Angoulême</p></div><span class="tag t-now" data-i18n="t_now">EN COURS</span></div>
-          <div class="step tilt"><div class="yr">2027 → 2029</div><div><h3 data-i18n="p5h">Mastère professionnel</h3><p data-i18n="p5p">Mastère professionnel manager en infrastructures et cybersécurité des SI (bac +5, 2 ans) · CESI Angoulême, en alternance</p></div><span class="tag t-goal" data-i18n="t_goal">OBJECTIF</span></div>
-        </div>
-        <p class="alt" data-i18n="p_alt">// en alternance chez TDI-services depuis septembre 2024</p>
+<!-- ================= HÉROS PERSO ================= -->
+<section class="hero" id="h-perso" data-show="perso">
+  <div class="ph" data-par="0.12" role="img" aria-label="Champ de lavande au crépuscule (rendu 3D)" data-i18n-alt="ph2"></div>
+  <div class="wrap">
+    <div>
+      <p class="eyebrow rise d1" data-i18n="pe_eye">Perso</p>
+      <h1 class="rise d2" data-i18n="pe_h">J'adore le ski.</h1>
+      <p class="lead rise d3" data-i18n="pe_p">Je suis plus que mon CV. Voici un peu de moi.</p>
+      <div class="cta rise d4">
+        <button class="btn primary" type="button" data-goto="pro" data-i18n="pe_back">← Revenir au côté pro</button>
+        <a class="btn" href="mailto:Charly.it@icloud.com" data-i18n="pe_mail">Me dire bonjour</a>
       </div>
     </div>
-  </section>
+  </div>
+  <span class="credit" data-i18n="credit">Rendu 3D · Blender</span>
+</section>
 
-  <!-- 02 · Expérience -->
-  <section id="experience" data-shape="2">
-    <div class="wrap">
-      <div class="left glass reveal" style="grid-column: 1 / span 8">
-        <div class="eyebrow" data-i18n="e_eyebrow">02 · Expérience</div>
-        <h2 data-i18n="e_h2">Alternant <span class="grad">admin systèmes &amp; réseaux</span></h2>
-        <p class="meta" data-i18n="e_meta">TDI-services · septembre 2024 → aujourd'hui · BU 365, équipe de 5 personnes</p>
-        <ul class="missions">
-          <li><b>Microsoft 365</b><span data-i18n="m1">Administration de tenants clients : Entra ID, Exchange Online.</span></li>
-          <li><b>Hornetsecurity</b><span data-i18n="m2">Intégration récurrente de tenants clients sur 365 Total Protection : plus de 200 à ce jour.</span></li>
-          <li><b data-i18n="m3t">Sécurité de la messagerie</b><span data-i18n="m3">Certifié Hornetsecurity Certified Engineer (mai 2026) : environnements complexes et dépannage.</span></li>
-          <li><b data-i18n="m4t">Documentation</b><span data-i18n="m4">Rédaction de procédures techniques pour l'équipe.</span></li>
-        </ul>
-        <div class="sub" data-i18n="st">Stages · Bac pro</div>
-        <ul class="missions small">
-          <li><b>Charente Informatique Diffusion</b><span data-i18n="st1">20/11/2023 → 26/01/2024 · stagiaire technicien informatique : sauvegarde Datto BCDR, dépannage matériel et système, infrastructure réseau.</span></li>
-          <li><b>Leroy-Somer</b><span data-i18n="st2">07/03/2023 → 12/05/2023 · stagiaire technicien informatique : helpdesk, installation de serveur, déploiement de machines virtuelles.</span></li>
-        </ul>
-      </div>
+<!-- ================= PRO ================= -->
+<div data-show="pro">
+  <div class="wrap">
+    <div class="figures reveal">
+      <div class="fig"><b>200+</b><span data-i18n="f1">tenants Microsoft 365 intégrés à Hornetsecurity</span></div>
+      <div class="fig"><b class="t" data-i18n="f2b">Mai 2026</b><span data-i18n="f2">certification Hornetsecurity Certified Engineer</span></div>
+      <div class="fig"><b>2024</b><span data-i18n="f3">début de l'alternance chez TDI-services</span></div>
+      <div class="fig"><b class="t" data-i18n="f4b">Bachelor</b><span data-i18n="f4">Bac +3 ASR en cours au CESI Angoulême</span></div>
     </div>
-  </section>
+  </div>
 
-  <!-- 03 · Compétences -->
-  <section id="competences" data-shape="3">
-    <div class="wrap">
-      <div class="right reveal">
-        <div class="eyebrow" data-i18n="k_eyebrow">03 · Compétences</div>
-        <h2 data-i18n="k_h2">Du <span class="grad">rack</span> au <span class="grad">script</span></h2>
-        <div class="skills">
-          <div class="skill"><h3><span data-i18n="k1">Systèmes &amp; infra</span> <em>// on-prem</em></h3><div class="pills"><span>Windows Server</span><span>Active Directory</span><span>DNS · DHCP · GPO</span><span>Hyper-V</span><span>Veeam</span><span>Debian</span></div></div>
-          <div class="skill"><h3><span data-i18n="k2">Cloud Microsoft</span> <em>// M365</em></h3><div class="pills"><span>Microsoft 365</span><span>Entra ID</span><span>Exchange Online</span><span>Intune</span><span>Azure</span><span>Power Automate</span></div></div>
-          <div class="skill"><h3><span data-i18n="k3">Réseaux &amp; sécurité</span> <em data-i18n="k3e">// défense</em></h3><div class="pills"><span>TCP/IP</span><span>VLAN</span><span>VPN</span><span>pfSense</span><span>Defender</span><span>Hornetsecurity</span><span>ClamAV</span></div></div>
-          <div class="skill"><h3><span data-i18n="k4">Automatisation &amp; dev</span> <em data-i18n="k4e">// assisté par IA</em></h3><div class="pills"><span>PowerShell</span><span>Python</span><span>Bash</span><span>C#</span><span>Git · Actions</span><span>Claude Code · MCP</span></div></div>
-        </div>
-      </div>
-      <div class="marquee" aria-hidden="true"><div>
-        <span>WINDOWS SERVER</span><b>✦</b><span>ENTRA ID</span><b>✦</b><span>HORNETSECURITY</span><b>✦</b><span>POWERSHELL</span><b>✦</b><span>MICROSOFT 365</span><b>✦</b><span>PFSENSE</span><b>✦</b>
-        <span>WINDOWS SERVER</span><b>✦</b><span>ENTRA ID</span><b>✦</b><span>HORNETSECURITY</span><b>✦</b><span>POWERSHELL</span><b>✦</b><span>MICROSOFT 365</span><b>✦</b><span>PFSENSE</span><b>✦</b>
-      </div></div>
+  <section class="s" id="parcours">
+    <div class="wrap s2">
+      <div class="stick reveal"><p class="eyebrow" data-i18n="p_eye">Parcours</p>
+      <h2 data-i18n="p_h">Un parcours en <em>alternance</em></h2></div>
+      <ol class="timeline reveal">
+        <li>
+          <div class="when">2027 → 2029 <span class="tag" data-i18n="t_goal">Objectif</span></div>
+          <h3 data-i18n="p5h">Mastère professionnel Manager en infrastructures et cybersécurité des SI</h3>
+          <p data-i18n="p5p">Bac +5 · CESI Angoulême, en alternance</p>
+        </li>
+        <li>
+          <div class="when">2026 → 2027 <span class="tag" data-i18n="t_now">En cours</span></div>
+          <h3 data-i18n="p4h">Bachelor Administrateur·trice systèmes et réseaux, 3e année</h3>
+          <p data-i18n="p4p">Bac +3 · en alternance · CESI Angoulême</p>
+        </li>
+        <li class="done">
+          <div class="when">13 mai 2026 <span class="tag" data-i18n="t_ok">Obtenu</span></div>
+          <h3 data-i18n="p3h">Hornetsecurity Certified Engineer</h3>
+          <p data-i18n="p3p">Sécurité de la messagerie, solutions Hornetsecurity, dépannage</p>
+        </li>
+        <li class="done">
+          <div class="when">2024 → 2026 <span class="tag" data-i18n="t_ok">Obtenu</span></div>
+          <h3 data-i18n="p2h">BTS GMSI, Gestionnaire en maintenance et support informatique</h3>
+          <p data-i18n="p2p">Bac +2 · cycle en 2 ans en alternance · CESI Angoulême</p>
+        </li>
+        <li class="done">
+          <div class="when">2021 → 2024 <span class="tag" data-i18n="t_ok">Obtenu</span></div>
+          <h3 data-i18n="p1h">Baccalauréat professionnel Systèmes numériques</h3>
+          <p data-i18n="p1p">Lycée Charles-Augustin Coulomb</p>
+        </li>
+      </ol>
     </div>
   </section>
 
-  <!-- 04 · Contact -->
-  <section id="contact" data-shape="4">
+  <figure class="band b1"><div class="ph" data-par="0.1"></div><figcaption data-i18n="cap1">Rangs de lavande, fin de journée · rendu 3D</figcaption></figure>
+
+  <section class="s" id="experience" style="padding-top:112px">
+    <div class="wrap s2">
+      <div class="stick reveal"><p class="eyebrow" data-i18n="e_eye">Expérience</p>
+      <h2 data-i18n="e_h">Alternant administrateur <em>systèmes et réseaux</em></h2></div>
+      <div>
+        <div class="job reveal">
+          <h3>TDI-services</h3>
+          <p class="meta" data-i18n="e_meta">septembre 2024 → aujourd'hui · BU 365, équipe de 5 personnes</p>
+          <ul>
+            <li data-i18n="m1">Administration de tenants Microsoft 365 clients : Entra ID, Exchange Online.</li>
+            <li data-i18n="m2">Intégration récurrente de tenants clients sur 365 Total Protection : plus de 200 à ce jour.</li>
+            <li data-i18n="m3">Sécurité de la messagerie : Hornetsecurity Certified Engineer (mai 2026), environnements complexes et dépannage.</li>
+            <li data-i18n="m4">Rédaction de procédures techniques pour l'équipe.</li>
+          </ul>
+        </div>
+        <p class="sub reveal" data-i18n="st_h">Stages</p>
+        <div class="interns reveal">
+          <div class="intern">
+            <h3 data-i18n="st1h">Charente Informatique Diffusion</h3>
+            <div class="d" data-i18n="st1d">20/11/2023 → 26/01/2024</div>
+            <p data-i18n="st1p">Stagiaire technicien informatique : sauvegarde Datto BCDR, dépannage matériel et système, infrastructure réseau.</p>
+          </div>
+          <div class="intern">
+            <h3 data-i18n="st2h">Leroy-Somer</h3>
+            <div class="d" data-i18n="st2d">07/03/2023 → 12/05/2023</div>
+            <p data-i18n="st2p">Stagiaire technicien informatique : helpdesk, installation de serveur, déploiement de machines virtuelles.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="s" id="competences" style="padding-top:112px">
+    <div class="wrap s2">
+      <div class="stick reveal"><p class="eyebrow" data-i18n="k_eye">Compétences</p>
+      <h2 data-i18n="k_h">Du rack <em>au script</em></h2></div>
+      <div class="skills reveal">
+        <div class="skill"><h3 data-i18n="k1">Systèmes et infrastructure</h3><div class="pills"><span>Windows Server</span><span>Active Directory</span><span>DNS · DHCP · GPO</span><span>Hyper-V</span><span>Veeam</span><span>Debian</span></div></div>
+        <div class="skill"><h3 data-i18n="k2">Cloud Microsoft</h3><div class="pills"><span>Microsoft 365</span><span>Entra ID</span><span>Exchange Online</span><span>Intune</span><span>Azure</span><span>Power Automate</span></div></div>
+        <div class="skill"><h3 data-i18n="k3">Réseaux et sécurité</h3><div class="pills"><span>TCP/IP</span><span>VLAN</span><span>VPN</span><span>pfSense</span><span>Defender</span><span>Hornetsecurity</span><span>ClamAV</span></div></div>
+        <div class="skill"><h3 data-i18n="k4">Automatisation et dev (assisté par IA)</h3><div class="pills"><span>PowerShell</span><span>Python</span><span>Bash</span><span>C#</span><span>Git · GitHub Actions</span><span>Claude Code · MCP</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <figure class="band b2"><div class="ph" data-par="0.1"></div><figcaption data-i18n="cap2">Lavande en fleur · rendu 3D</figcaption></figure>
+
+  <section class="contact" id="contact">
     <div class="wrap">
-      <div class="left glass reveal">
-        <img class="avatar lg" src="photo.webp" width="148" height="148" alt="Portrait de Charly Malaquis Dutin" data-i18n-alt="alt_photo" loading="lazy">
-        <div class="eyebrow" data-i18n="ct_eyebrow">04 · Contact</div>
-        <p class="big" data-i18n="ct_big">Discutons<br><span class="grad">ensemble.</span></p>
+      <div class="reveal">
+        <p class="eyebrow" data-i18n="ct_eye">Contact</p>
+        <h2 data-i18n="ct_h">Discutons <em>ensemble.</em></h2>
         <p class="lead" data-i18n="ct_lead">Ouvert aux échanges et aux opportunités en administration systèmes et réseaux, Microsoft 365 et sécurité de la messagerie.</p>
-        <div class="contactlist">
-          <a href="mailto:Charly.it@icloud.com"><span>Charly.it@icloud.com</span><small data-i18n="ct_mail">E-mail</small></a>
-          <a href="https://www.linkedin.com/in/charly-malaquis-dutin-4028ab291" rel="noopener"><span>LinkedIn</span><small>charly-malaquis-dutin</small></a>
-          <a href="https://github.com/Charly-IT" rel="noopener"><span>GitHub</span><small>Charly-IT</small></a>
-        </div>
         <p class="where" data-i18n="ct_where">Nouvelle-Aquitaine, France</p>
       </div>
+      <div class="links reveal">
+        <a href="mailto:Charly.it@icloud.com"><span>Charly.it@icloud.com</span><small data-i18n="ct_mail">E-mail</small></a>
+        <a href="https://www.linkedin.com/in/charly-malaquis-dutin-4028ab291" rel="noopener"><span>LinkedIn</span><small>charly-malaquis-dutin</small></a>
+        <a href="https://github.com/Charly-IT" rel="noopener"><span>GitHub</span><small>Charly-IT</small></a>
+      </div>
     </div>
   </section>
-</main>
-<footer><span>© 2026 Charly Malaquis Dutin</span><span data-i18n="foot">Scène 3D : 7 000 particules en WebGL</span></footer>
+</div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+</main>
+
+<footer><div class="wrap"><span>© 2026 Charly Malaquis Dutin</span><span data-i18n="foot">Fait avec soin, Nouvelle-Aquitaine</span></div></footer>
 
 <script>
 (() => {
-  const EN = {"alt_photo": "Portrait of Charly Malaquis Dutin", "n0": "Home", "n1": "Education", "n2": "Experience", "n3": "Skills", "n4": "Contact", "role": "Systems and network administration apprentice, focused on Microsoft 365 and email security.", "c1": "BTS GMSI earned", "c2": "Bachelor ASR · 2026 → 2027", "cta1": "Get in touch →", "s1": "Microsoft 365 tenants onboarded to Hornetsecurity", "s2b": "May 2026", "s2": "Hornetsecurity Certified Engineer certification", "s3": "apprenticeship at TDI-services began", "s4b": "Bachelor", "s4": "Bachelor's degree (ASR) in progress at CESI Angoulême", "scroll": "SCROLL", "p_eyebrow": "01 · Education", "p_h2": "A <span class=\"grad\">work-study</span> path", "p1h": "Vocational Baccalaureate, Digital Systems", "p1p": "Lycée Charles-Augustin Coulomb", "p2p": "IT support and maintenance manager (level 5), 2-year work-study cycle · CESI Angoulême", "p3y": "May 13, 2026", "p3p": "Email security, Hornetsecurity solutions, troubleshooting", "p4p": "Bachelor Systems and Network Administrator, 3rd year work-study (level 6) · CESI Angoulême", "p5p": "Professional Master (Mastère professionnel): Infrastructure and Cybersecurity Manager for IT Systems (level 7, 2 years) · CESI Angoulême, work-study", "p5h": "Professional Master", "t_ok": "EARNED", "t_now": "IN PROGRESS", "t_goal": "GOAL", "p_alt": "// work-study at TDI-services since September 2024", "e_eyebrow": "02 · Experience", "e_h2": "Apprentice <span class=\"grad\">systems &amp; network admin</span>", "e_meta": "TDI-services · September 2024 → present · BU 365, team of 5", "m1": "Administration of customer tenants: Entra ID, Exchange Online.", "m2": "Recurring onboarding of customer tenants onto 365 Total Protection: over 200 so far.", "m3t": "Email security", "m3": "Hornetsecurity Certified Engineer (May 2026): complex environments and troubleshooting.", "m4t": "Documentation", "m4": "Writing technical procedures for the team.", "st": "Internships · Vocational Baccalaureate", "st1": "11/20/2023 → 01/26/2024 · IT technician intern: Datto BCDR backup, hardware and system repair, network infrastructure.", "st2": "03/07/2023 → 05/12/2023 · IT technician intern: helpdesk, server installation, virtual machine deployment.", "k_eyebrow": "03 · Skills", "k_h2": "From <span class=\"grad\">rack</span> to <span class=\"grad\">script</span>", "k1": "Systems &amp; infrastructure", "k2": "Microsoft cloud", "k3": "Networks &amp; security", "k4": "Automation &amp; dev", "k4e": "// AI-assisted", "k3e": "// defense", "ct_eyebrow": "04 · Contact", "ct_big": "Let's<br><span class=\"grad\">talk.</span>", "ct_lead": "Open to conversations and opportunities in systems and network administration, Microsoft 365 and email security.", "ct_mail": "Email", "ct_where": "Nouvelle-Aquitaine, France", "foot": "3D scene: 7,000 particles in WebGL", "_title": "Charly Malaquis Dutin · Systems & Network Administration Apprentice", "_desc": "Charly Malaquis Dutin, systems and network administration apprentice (Microsoft 365, email security). Hornetsecurity Certified Engineer."};
+  const EN = {"_title": "Charly Malaquis Dutin · Systems & Network Administration Apprentice", "_desc": "Charly Malaquis Dutin, systems and network administration apprentice (Microsoft 365, email security). Hornetsecurity Certified Engineer.", "alt": "Portrait of Charly Malaquis Dutin", "n1": "Education", "n2": "Experience", "n3": "Skills", "n4": "Contact", "sw_pro": "Pro", "sw_perso": "Personal", "role": "Systems and network administration apprentice, focused on Microsoft 365 and email security.", "c1": "BTS GMSI earned", "c2": "Bachelor ASR · 2026 → 2027", "c3": "Hornetsecurity Certified Engineer", "cta1": "Get in touch →", "cta2": "LinkedIn", "f1": "Microsoft 365 tenants onboarded to Hornetsecurity", "f2": "Hornetsecurity Certified Engineer certification", "f2b": "May 2026", "f3": "apprenticeship at TDI-services began", "f4": "Bachelor's degree (ASR) in progress at CESI Angoulême", "f4b": "Bachelor", "p_eye": "Education", "p_h": "A <em>work-study</em> path", "t_ok": "Earned", "t_now": "In progress", "t_goal": "Goal", "p1h": "Vocational Baccalaureate, Digital Systems", "p1p": "Lycée Charles-Augustin Coulomb", "p2h": "BTS GMSI, IT support and maintenance manager", "p2p": "Level 5 · 2-year work-study cycle · CESI Angoulême", "p3h": "Hornetsecurity Certified Engineer", "p3p": "May 13, 2026 · Email security, Hornetsecurity solutions, troubleshooting", "p4h": "Bachelor Systems and Network Administrator, 3rd year", "p4p": "Level 6 · work-study · CESI Angoulême", "p5h": "Professional Master: Infrastructure and Cybersecurity Manager for IT Systems", "p5p": "Level 7 · 2 years · CESI Angoulême, work-study", "e_eye": "Experience", "e_h": "Systems & network administration <em>apprentice</em>", "e_meta": "TDI-services · September 2024 → present · BU 365, team of 5", "m1": "Administration of customer tenants: Entra ID, Exchange Online.", "m2": "Recurring onboarding of customer tenants onto 365 Total Protection: over 200 so far.", "m3": "Email security: Hornetsecurity Certified Engineer (May 2026), complex environments and troubleshooting.", "m4": "Writing technical procedures for the team.", "st_h": "Internships", "st1h": "Charente Informatique Diffusion", "st1d": "11/20/2023 → 01/26/2024", "st1p": "IT technician intern: Datto BCDR backup, hardware and system repair, network infrastructure.", "st2h": "Leroy-Somer", "st2d": "03/07/2023 → 05/12/2023", "st2p": "IT technician intern: helpdesk, server installation, virtual machine deployment.", "k_eye": "Skills", "k_h": "From rack <em>to script</em>", "k1": "Systems & infrastructure", "k2": "Microsoft cloud", "k3": "Networks & security", "k4": "Automation & dev (AI-assisted)", "ct_eye": "Contact", "ct_h": "Let's <em>talk.</em>", "ct_lead": "Open to conversations and opportunities in systems and network administration, Microsoft 365 and email security.", "ct_mail": "Email", "ct_where": "Nouvelle-Aquitaine, France", "pe_eye": "Personal", "pe_h": "I love skiing.", "pe_p": "I'm more than my résumé. Here's a bit of me.", "pe_back": "← Back to the professional side", "pe_mail": "Say hello", "foot": "Made with care, Nouvelle-Aquitaine", "h_eye": "Apprenticeship · Systems and networks", "ph1": "Lavender field in Provence at sunset (3D render)", "ph2": "Lavender field at dusk (3D render)", "cap1": "Rows of lavender, end of day · 3D render", "cap2": "Lavender in bloom · 3D render", "credit": "3D render · Blender"};
+  const body = document.body, main = document.getElementById('top'), hd = document.getElementById('hd');
   const els = [...document.querySelectorAll('[data-i18n]')];
-  els.forEach(el => { el.dataset.fr = el.innerHTML; });
+  els.forEach(el => { el.dataset.fr = el.hasAttribute('data-i18n-alt') && !el.matches('img') ? (el.getAttribute('aria-label') || '') : el.innerHTML; });
   const alts = [...document.querySelectorAll('[data-i18n-alt]')];
-  alts.forEach(el => { el.dataset.fr = el.getAttribute('alt'); });
-  const frTitle = document.title, meta = document.querySelector('meta[name="description"]'), frDesc = meta ? meta.content : '';
-  const btns = [...document.querySelectorAll('.lang button')];
+  alts.forEach(el => { el.dataset.frAlt = el.getAttribute(el.matches('img') ? 'alt' : 'aria-label'); });
+  const meta = document.querySelector('meta[name="description"]');
+  const frTitle = document.title, frDesc = meta ? meta.content : '';
+  const lbtn = [...document.querySelectorAll('.lang button')];
   function setLang(l, save) {
     document.documentElement.lang = l;
-    els.forEach(el => { const k = el.dataset.i18n; el.innerHTML = l === 'en' && EN[k] !== undefined ? EN[k] : el.dataset.fr; });
-    alts.forEach(el => { const k = el.dataset.i18nAlt; el.setAttribute('alt', l === 'en' && EN[k] ? EN[k] : el.dataset.fr); });
+    els.forEach(el => {
+      if (el.hasAttribute('data-i18n-alt')) return;
+      const k = el.dataset.i18n; el.innerHTML = l === 'en' && EN[k] !== undefined ? EN[k] : el.dataset.fr;
+    });
+    alts.forEach(el => {
+      const k = el.dataset.i18nAlt, attr = el.matches('img') ? 'alt' : 'aria-label';
+      el.setAttribute(attr, l === 'en' && EN[k] ? EN[k] : el.dataset.frAlt);
+    });
     document.title = l === 'en' ? EN._title : frTitle;
     if (meta) meta.content = l === 'en' ? EN._desc : frDesc;
-    btns.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.l === l)));
+    lbtn.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.l === l)));
     if (save) { try { localStorage.setItem('lang', l); } catch (e) {} }
   }
-  btns.forEach(b => b.addEventListener('click', () => setLang(b.dataset.l, true)));
+  lbtn.forEach(b => b.addEventListener('click', () => setLang(b.dataset.l, true)));
   let saved = null; try { saved = localStorage.getItem('lang'); } catch (e) {}
   const browser = (navigator.language || 'fr').toLowerCase().startsWith('fr') ? 'fr' : 'en';
   const start = saved === 'fr' || saved === 'en' ? saved : browser;
   if (start === 'en') setLang('en', false);
-})();
-</script>
-<script>
-(() => {
-  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const mobile = matchMedia('(max-width: 900px)').matches;
-  const sections = [...document.querySelectorAll('main section')];
 
-  /* ------------------------------------------------------------ scène 3D */
-  let renderer;
-  const canvas = document.getElementById('scene');
-  try { renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true }); }
-  catch (e) { canvas.style.display = 'none'; }
+  /* en-tête : transparent sur la photo, papier ensuite */
+  function head() { hd.classList.toggle('solid', scrollY > innerHeight * 0.72); }
+  addEventListener('scroll', head, { passive: true }); head();
 
-  if (renderer) {
-    renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(55, 1, 0.1, 100);
-    camera.position.set(0, 0, 7.5);
-
-    const N = mobile ? 4200 : 7000;
-    const rnd = (a, b) => a + Math.random() * (b - a);
-
-    // Formes cibles : une par section
-    const shapes = [];
-    const make = fn => { const a = new Float32Array(N * 3); for (let i = 0; i < N; i++) { const p = fn(i); a[i*3] = p[0]; a[i*3+1] = p[1]; a[i*3+2] = p[2]; } return a; };
-    // 0 · sphère-réseau (Fibonacci + coquille)
-    shapes.push(make(i => {
-      const k = i % 2600, t = Math.acos(1 - 2 * (k + .5) / 2600), ph = Math.PI * (1 + Math.sqrt(5)) * k;
-      const r = i < 2600 ? 2.3 : rnd(.4, 2.2);
-      return [r * Math.sin(t) * Math.cos(ph), r * Math.cos(t), r * Math.sin(t) * Math.sin(ph)];
-    }));
-    // 1 · double hélice (le parcours)
-    shapes.push(make(i => {
-      const s = i / N, strand = i % 3, a = s * Math.PI * 9 + (strand === 1 ? Math.PI : 0);
-      if (strand === 2) { const b = Math.floor(s * 60) / 60, aa = b * Math.PI * 9, u = Math.random(); return [(b - .5) * 7, Math.cos(aa) * 1.2 * (1 - 2*u), Math.sin(aa) * 1.2 * (1 - 2*u)]; }
-      return [(s - .5) * 7 + rnd(-.03,.03), Math.cos(a) * 1.2 + rnd(-.05,.05), Math.sin(a) * 1.2 + rnd(-.05,.05)];
-    }));
-    // 2 · baie de serveurs (3 racks de 8 unités)
-    shapes.push(make(i => {
-      const rack = i % 3, u = Math.floor(rnd(0, 8)), x = (rack - 1) * 1.55;
-      const face = Math.random();
-      if (face < .7) return [x + rnd(-.6, .6), -2 + u * .5 + rnd(.05, .38), .45];             // façade des serveurs
-      if (face < .85) return [x + (Math.random() < .5 ? -.62 : .62), rnd(-2.05, 2.05), rnd(-.45, .45)];
-      return [x + rnd(-.62, .62), Math.random() < .5 ? -2.05 : 2.05, rnd(-.45, .45)];
-    }));
-    // 3 · nœud torique (les compétences qui s'entrelacent)
-    shapes.push(make(i => {
-      const t = (i / N) * Math.PI * 2 * 1, p = 2, q = 3, R = 1.55, r = .55;
-      const tt = t + rnd(0, .002), ph = rnd(0, Math.PI * 2);
-      const cx = (R + r * Math.cos(q * tt)) * Math.cos(p * tt), cy = (R + r * Math.cos(q * tt)) * Math.sin(p * tt), cz = r * Math.sin(q * tt);
-      const tube = .22;
-      return [cx + tube * Math.cos(ph) * Math.cos(p*tt), cy + tube * Math.cos(ph) * Math.sin(p*tt), cz + tube * Math.sin(ph)];
-    }));
-    // 4 · onde (contact)
-    const side = Math.ceil(Math.sqrt(N));
-    shapes.push(make(i => {
-      const gx = (i % side) / side - .5, gz = Math.floor(i / side) / side - .5;
-      const x = gx * 9, z = gz * 9;
-      return [x, Math.sin(x * 1.1) * .35 + Math.cos(z * 1.3) * .35 - .6, z];
-    }));
-
-    const pos = new Float32Array(shapes[0]);
-    const geo = new THREE.BufferGeometry();
-    geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
-    const seeds = new Float32Array(N); for (let i = 0; i < N; i++) seeds[i] = Math.random();
-    geo.setAttribute('aSeed', new THREE.BufferAttribute(seeds, 1));
-
-    const mat = new THREE.ShaderMaterial({
-      transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
-      uniforms: { uTime: { value: 0 }, uSize: { value: (mobile ? 22 : 26) * renderer.getPixelRatio() }, uMix: { value: 0 } },
-      vertexShader: `
-        attribute float aSeed; uniform float uTime; uniform float uSize; varying vec3 vCol; varying float vA;
-        void main() {
-          vec3 p = position;
-          p += 0.035 * vec3(sin(uTime * 1.3 + aSeed * 40.0), cos(uTime * 1.1 + aSeed * 30.0), sin(uTime * 0.9 + aSeed * 20.0));
-          vec4 mv = modelViewMatrix * vec4(p, 1.0);
-          gl_Position = projectionMatrix * mv;
-          float tw = 0.65 + 0.35 * sin(uTime * 2.0 + aSeed * 60.0);
-          gl_PointSize = uSize * (0.35 + aSeed * 0.65) * tw / -mv.z;
-          vec3 violet = vec3(0.545, 0.361, 0.965), cyan = vec3(0.133, 0.827, 0.933), white = vec3(1.0);
-          float h = clamp(p.y * 0.22 + 0.5 + (aSeed - 0.5) * 0.4, 0.0, 1.0);
-          vCol = mix(violet, cyan, h);
-          if (aSeed > 0.985) vCol = white;
-          vA = 0.55 + 0.45 * tw;
-        }`,
-      fragmentShader: `
-        varying vec3 vCol; varying float vA;
-        void main() {
-          float d = length(gl_PointCoord - 0.5);
-          float a = smoothstep(0.5, 0.0, d);
-          gl_FragColor = vec4(vCol, a * a * vA);
-        }`
-    });
-    const points = new THREE.Points(geo, mat);
-    const group = new THREE.Group(); group.add(points); scene.add(group);
-
-    // Réseau de l'accueil : nœuds reliés quand ils sont proches
-    const NODES = 150, nodes = [];
-    for (let k = 0; k < NODES; k++) {
-      const t = Math.acos(1 - 2 * (k + .5) / NODES), ph = Math.PI * (1 + Math.sqrt(5)) * k;
-      nodes.push(new THREE.Vector3(2.32 * Math.sin(t) * Math.cos(ph), 2.32 * Math.cos(t), 2.32 * Math.sin(t) * Math.sin(ph)));
+  /* parallaxe douce (lissée) des photos */
+  const pars = [...document.querySelectorAll('[data-par]')];
+  const reduceM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const st = pars.map(el => ({ el, cur: 0, tgt: 0, k: parseFloat(el.dataset.par) }));
+  function aim() {
+    for (const s of st) {
+      const box = s.el.parentElement.getBoundingClientRect();
+      if (box.bottom < -200 || box.top > innerHeight + 200) { s.vis = false; continue; }
+      s.vis = true; s.tgt = ((box.top + box.height / 2) - innerHeight / 2) * -s.k;
     }
-    const segs = [];
-    for (let a = 0; a < NODES; a++) for (let b = a + 1; b < NODES; b++) if (nodes[a].distanceTo(nodes[b]) < .78) segs.push(nodes[a].x, nodes[a].y, nodes[a].z, nodes[b].x, nodes[b].y, nodes[b].z);
-    const lineGeo = new THREE.BufferGeometry(); lineGeo.setAttribute('position', new THREE.Float32BufferAttribute(segs, 3));
-    const lineMat = new THREE.LineBasicMaterial({ color: 0x8B5CF6, transparent: true, opacity: .35, blending: THREE.AdditiveBlending, depthWrite: false });
-    const net = new THREE.LineSegments(lineGeo, lineMat); group.add(net);
-
-    // Anneaux orbitaux
-    const ringMat = new THREE.MeshBasicMaterial({ color: 0x22D3EE, transparent: true, opacity: .18, side: THREE.DoubleSide, blending: THREE.AdditiveBlending, depthWrite: false });
-    const ring1 = new THREE.Mesh(new THREE.TorusGeometry(3.1, .006, 8, 200), ringMat); ring1.rotation.x = 1.25; group.add(ring1);
-    const ring2 = new THREE.Mesh(new THREE.TorusGeometry(3.5, .004, 8, 200), ringMat.clone()); ring2.rotation.set(1.1, .5, 0); ring2.material.opacity = .1; group.add(ring2);
-
-    // Étoiles lointaines
-    const SN = 900, sp = new Float32Array(SN * 3);
-    for (let i = 0; i < SN; i++) { sp[i*3] = rnd(-30, 30); sp[i*3+1] = rnd(-18, 18); sp[i*3+2] = rnd(-30, -6); }
-    const starGeo = new THREE.BufferGeometry(); starGeo.setAttribute('position', new THREE.BufferAttribute(sp, 3));
-    const stars = new THREE.Points(starGeo, new THREE.PointsMaterial({ color: 0x9a9ab0, size: .045, transparent: true, opacity: .55, depthWrite: false }));
-    scene.add(stars);
-
-    // Position de la forme par section (gauche / droite selon le texte)
-    const placeX = mobile ? [0, 0, 0, 0, 0] : [2.3, -2.6, 2.9, -2.5, 2.6];
-    const placeS = mobile ? [.8, .7, .75, .8, .8] : [1, .95, 1, 1, 1];
-
-    let progress = 0, target = 0;
-    const mouse = { x: 0, y: 0, sx: 0, sy: 0 };
-    addEventListener('pointermove', e => { mouse.x = e.clientX / innerWidth - .5; mouse.y = e.clientY / innerHeight - .5; });
-
-    function sectionProgress() {
-      const mid = scrollY + innerHeight * .5;
-      for (let i = 0; i < sections.length; i++) {
-        const top = sections[i].offsetTop, h = sections[i].offsetHeight;
-        if (mid < top + h || i === sections.length - 1) {
-          const f = Math.min(Math.max((mid - top) / h, 0), 1);
-          // on garde la forme au milieu de la section, transition sur la fin
-          const t = f < .55 ? 0 : (f - .55) / .45;
-          return Math.min(i + t, sections.length - 1);
-        }
-      }
-      return 0;
-    }
-
-    function resize() {
-      renderer.setSize(innerWidth, innerHeight, false);
-      camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix();
-    }
-    addEventListener('resize', resize); resize();
-
-    const ease = t => t < .5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3) / 2;
-    const clock = new THREE.Clock();
-    function frame() {
-      const t = clock.getElapsedTime();
-      target = sectionProgress();
-      progress += (target - progress) * (reduce ? 1 : .06);
-      const i = Math.floor(progress), f = ease(progress - i), j = Math.min(i + 1, shapes.length - 1);
-      const A = shapes[i], B = shapes[j];
-      for (let k = 0; k < pos.length; k++) pos[k] = A[k] + (B[k] - A[k]) * f;
-      geo.attributes.position.needsUpdate = true;
-
-      const px = placeX[i] + (placeX[j] - placeX[i]) * f, ps = placeS[i] + (placeS[j] - placeS[i]) * f;
-      group.position.x += (px - group.position.x) * .08;
-      group.scale.setScalar(ps);
-      const spin = reduce ? 0 : t * .12;
-      mouse.sx += (mouse.x - mouse.sx) * .05; mouse.sy += (mouse.y - mouse.sy) * .05;
-      group.rotation.y = spin + mouse.sx * .6 + (i === 2 ? -spin * .85 : 0);
-      group.rotation.x = mouse.sy * .4 + (i === 4 ? .35 * f : 0);
-      net.material.opacity = Math.max(0, .35 * (1 - progress * 1.8));
-      ring1.material.opacity = .18 * Math.max(.25, 1 - progress * .5);
-      ring1.rotation.z = reduce ? 0 : t * .2; ring2.rotation.z = reduce ? 0 : -t * .14;
-      stars.rotation.y = reduce ? 0 : t * .01;
-      camera.position.x += (mouse.sx * .8 - camera.position.x) * .05;
-      camera.position.y += (-mouse.sy * .5 - camera.position.y) * .05;
-      camera.lookAt(0, 0, 0);
-      mat.uniforms.uTime.value = reduce ? 0 : t;
-      renderer.render(scene, camera);
-      requestAnimationFrame(frame);
-    }
-    frame();
   }
+  (function tick() {
+    for (const s of st) {
+      if (!s.vis) continue;
+      s.cur += (s.tgt - s.cur) * (reduceM ? 1 : 0.085);
+      s.el.style.transform = 'translate3d(0,' + s.cur.toFixed(2) + 'px,0)';
+    }
+    requestAnimationFrame(tick);
+  })();
+  addEventListener('scroll', aim, { passive: true }); addEventListener('resize', aim); aim();
 
-  /* ------------------------------------------------------------ interface */
-  // Progression + section active
-  const bar = document.getElementById('progress');
-  const links = [...document.querySelectorAll('nav.top a')];
-  function onScroll() {
-    const max = document.documentElement.scrollHeight - innerHeight;
-    bar.style.transform = `scaleX(${max > 0 ? scrollY / max : 0})`;
-    const mid = scrollY + innerHeight * .45;
-    let cur = 0; sections.forEach((s, i) => { if (s.offsetTop <= mid) cur = i; });
-    links.forEach((a, i) => a.classList.toggle('on', i === cur));
-  }
-  addEventListener('scroll', onScroll, { passive: true }); onScroll();
-
-  // Halo qui suit le curseur
-  const glow = document.getElementById('glow');
-  if (!reduce && !mobile) addEventListener('pointermove', e => { glow.style.transform = `translate3d(${e.clientX}px,${e.clientY}px,0)`; });
-
-  // Cartes inclinées en 3D sous la souris
-  if (!reduce) document.querySelectorAll('.tilt').forEach(el => {
-    el.addEventListener('pointermove', e => {
-      const r = el.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
-      el.style.transform = `perspective(1000px) rotateX(${(.5 - y) * 10}deg) rotateY(${(x - .5) * 12}deg) translateZ(6px)`;
-      el.style.setProperty('--mx', `${x * 100}%`); el.style.setProperty('--my', `${y * 100}%`);
-    });
-    el.addEventListener('pointerleave', () => { el.style.transform = ''; });
-    el.style.transition = 'transform .15s ease-out';
-  });
-
-  // Boutons magnétiques
-  if (!reduce) document.querySelectorAll('.magnet').forEach(b => {
-    b.addEventListener('pointermove', e => { const r = b.getBoundingClientRect(); b.style.transform = `translate(${(e.clientX - r.left - r.width/2) * .25}px, ${(e.clientY - r.top - r.height/2) * .35}px)`; });
-    b.addEventListener('pointerleave', () => { b.style.transform = ''; });
-  });
-
-  // Ligne tapée dans le terminal de l'accueil (le texte complet est déjà là au repos)
-  const lines = ['Get-Certification -Editeur Hornetsecurity', 'Connect-ExchangeOnline', 'Get-MgUser -All | Measure-Object', 'Start-Alternance -Niveau Bachelor'];
-  const typed = document.getElementById('typed');
-  if (!reduce) {
-    let li = 0;
-    const type = async () => {
-      await new Promise(r => setTimeout(r, 2600));
-      while (true) {
-        const s = lines[li];
-        for (let k = s.length; k >= 0; k--) { typed.textContent = s.slice(0, k); await new Promise(r => setTimeout(r, 18)); }
-        li = (li + 1) % lines.length;
-        const n = lines[li];
-        for (let k = 0; k <= n.length; k++) { typed.textContent = n.slice(0, k); await new Promise(r => setTimeout(r, 45 + Math.random() * 40)); }
-        await new Promise(r => setTimeout(r, 2400));
-      }
+  const mbtn = [...document.querySelectorAll('.mode button')];
+  function setMode(m, animate) {
+    if (body.dataset.mode === m) return;
+    const apply = () => {
+      body.dataset.mode = m;
+      mbtn.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.mode === m)));
+      window.scrollTo(0, 0); head(); aim();
+      try { history.replaceState(null, '', m === 'perso' ? '#perso' : location.pathname); } catch (e) {}
+      requestAnimationFrame(() => main.classList.remove('swap'));
     };
-    type();
+    if (animate) { main.classList.add('swap'); setTimeout(apply, 260); } else apply();
   }
+  mbtn.forEach(b => b.addEventListener('click', () => setMode(b.dataset.mode, true)));
+  document.querySelectorAll('[data-goto]').forEach(b => b.addEventListener('click', () => setMode(b.dataset.goto, true)));
+  if (location.hash === '#perso') setMode('perso', false);
 
-  // Animations GSAP : tout part d'un état visible (rien n'attend le défilement pour apparaître)
-  if (window.gsap && !reduce) {
-    gsap.registerPlugin(ScrollTrigger);
-    const name = document.querySelector('#name .grad');
-    // Chaque lettre recoit sa tranche du degrade (sinon le texte « clippe » disparait une fois les lettres animees)
-    const letters = [...name.textContent], n = letters.length;
-    name.classList.remove('grad');
-    name.innerHTML = letters.map((c, k) => `<span class="ch grad" style="background-size:${n * 100}% 100%;background-position:${n > 1 ? k / (n - 1) * 100 : 0}% 0">${c}</span>`).join('');
-    gsap.from('#name .ch', { yPercent: 70, rotateX: -80, duration: 1.1, stagger: .06, ease: 'expo.out', transformOrigin: '50% 100%' });
-    gsap.from('.role, .typed, .chips .chip, .cta .btn', { y: 24, duration: .9, stagger: .07, ease: 'power3.out', delay: .2 });
-    gsap.utils.toArray('.reveal').forEach(el => {
-      gsap.from(el, { y: 70, rotateX: 8, transformPerspective: 900, duration: 1.1, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 88%' } });
-    });
-    gsap.utils.toArray('.step, .missions li, .skill, .card').forEach((el, k) => {
-      gsap.from(el, { y: 40, scale: .97, duration: .8, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 92%' }, delay: (k % 3) * .06 });
-    });
-    // Compteurs
-    document.querySelectorAll('[data-count]').forEach(el => {
-      const end = +el.dataset.count, pre = el.dataset.prefix || '', suf = el.dataset.suffix || '', o = { v: 0 };
-      gsap.to(o, { v: end, duration: 1.8, ease: 'power2.out', scrollTrigger: { trigger: el, start: 'top 95%' },
-        onUpdate: () => { el.textContent = pre + Math.round(o.v).toLocaleString('fr-FR') + suf; } });
-    });
-    // Parallaxe légère des titres
-    gsap.utils.toArray('h2').forEach(h => gsap.to(h, { yPercent: -18, ease: 'none', scrollTrigger: { trigger: h, scrub: true } }));
-  }
+  const io = 'IntersectionObserver' in window ? new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .12 }) : null;
+  document.querySelectorAll('.reveal').forEach(el => {
+    const sibs = [...el.parentElement.children].filter(c => c.classList.contains('reveal'));
+    el.style.setProperty('--d', Math.min(sibs.indexOf(el), 6) * 0.1 + 's');
+    io ? io.observe(el) : el.classList.add('in');
+  });
 })();
 </script>
 </body>

@@ -4,4 +4,6 @@ Portfolio de Charly Malaquis Dutin, alternant administrateur systèmes et résea
 
 En ligne : https://charly-it.github.io
 
-Page unique et autonome (`index.html`), en français et en anglais (bouton FR / EN, langue du navigateur détectée au premier chargement). Scène 3D WebGL avec Three.js r128 et animations GSAP 3.12.5, chargés depuis cdnjs. Aucune étape de compilation.
+Page unique et autonome (`index.html`), en français et en anglais (bouton FR / EN, langue du navigateur détectée au premier chargement), avec une partie Pro et une partie Perso (bouton Pro / Perso, ou `#perso`).
+
+Les images de fond sont des rendus 3D réalisés avec Blender (scène de Provence), étalonnés puis exportés en WebP dans `bg/`. Aucune étape de compilation, aucune dépendance JavaScript.
