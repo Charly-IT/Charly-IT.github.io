@@ -3,12 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Charly · El-Kamzy-FR</title>
+<title>Charly Malaquis Dutin · Alternant administrateur systèmes et réseaux</title>
+<meta name="description" content="Charly Malaquis Dutin, alternant administrateur systèmes et réseaux (Microsoft 365, sécurité de la messagerie). Hornetsecurity Certified Engineer.">
+<meta property="og:title" content="Charly Malaquis Dutin · Administrateur systèmes et réseaux (alternance)">
+<meta property="og:description" content="Microsoft 365, sécurité de la messagerie, Hornetsecurity Certified Engineer.">
+<meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
-/* Un seul univers sombre (celui de Nexus et Pulse) : la scène 3D vit derrière tout le contenu.
+/* Un seul univers sombre : la scène 3D vit derrière tout le contenu.
    Mise en page : colonnes asymétriques qui alternent gauche / droite pour laisser respirer la forme 3D. */
 :root {
   --bg: #07070A;
@@ -133,23 +137,6 @@ h1 .ch { display: inline-block; }
 .marquee div b { color: rgba(139,92,246,.6); -webkit-text-stroke: 0; font-weight: 800; }
 @keyframes slide { to { transform: translateX(-50%); } }
 
-/* Projets */
-.projects { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; perspective: 1400px; }
-.card { position: relative; padding: 28px; border-radius: 22px; border: 1px solid var(--line); background: linear-gradient(160deg, rgba(24,22,34,.85), rgba(10,10,14,.85)); backdrop-filter: blur(14px);
-  transform-style: preserve-3d; will-change: transform; overflow: hidden; min-height: 300px; display: flex; flex-direction: column; }
-.card::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(600px circle at var(--mx, 50%) var(--my, 0%), rgba(34,211,238,.14), transparent 40%); }
-.card .top { display: flex; justify-content: space-between; align-items: center; gap: 12px; transform: translateZ(40px); }
-.card h3 { font-size: 28px; letter-spacing: -.5px; }
-.card .ico { width: 46px; height: 46px; border-radius: 14px; display: grid; place-items: center; background: linear-gradient(140deg, rgba(139,92,246,.35), rgba(34,211,238,.25)); border: 1px solid rgba(255,255,255,.1); }
-.card .ico svg { width: 24px; height: 24px; stroke: #fff; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-.card p { color: var(--muted); margin: 16px 0 18px; transform: translateZ(26px); }
-.card ul { list-style: none; padding: 0; margin: 0 0 20px; display: grid; gap: 6px; font-size: 14px; transform: translateZ(20px); }
-.card ul li::before { content: "▸ "; color: var(--cyan); }
-.card .stack { margin-top: auto; display: flex; flex-wrap: wrap; gap: 6px; transform: translateZ(30px); }
-.card .stack span { font: 600 11.5px var(--mono); padding: 5px 9px; border-radius: 8px; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08); color: #D4D4DC; }
-.status { font: 700 11px var(--mono); letter-spacing: 1px; display: inline-flex; align-items: center; gap: 7px; }
-.status i { width: 7px; height: 7px; border-radius: 50%; }
-
 /* Contact */
 #contact .glass { text-align: left; }
 .big { font: 800 clamp(40px, 7vw, 96px)/.95 var(--display); letter-spacing: -2.5px; margin: 18px 0 26px; }
@@ -167,6 +154,26 @@ footer { position: relative; z-index: 2; padding: 30px max(24px, 6vw) 40px; colo
   html { scroll-behavior: auto; }
   .marquee div, .typed .cur, .scrollhint span { animation: none; }
 }
+
+/* Photo, langue, contact, stages */
+h1 { font-size: clamp(56px, 9.5vw, 140px); white-space: nowrap; letter-spacing: -3px; }
+h1 .ch { display: inline-block; }
+.avatar { width: 84px; height: 84px; border-radius: 50%; display: block; border: 1px solid var(--line); background: #fff; object-fit: cover; box-shadow: 0 0 0 4px rgba(139,92,246,.12); }
+.avatar.lg { width: 148px; height: 148px; margin-bottom: 22px; }
+.who { display: flex; align-items: center; gap: 18px; margin-bottom: 6px; }
+.fullname { font: 600 14px var(--mono); color: var(--muted); }
+.fullname b { color: var(--text); font-weight: 600; }
+.lang { position: fixed; top: 18px; right: 24px; z-index: 21; display: inline-flex; padding: 4px; border: 1px solid var(--line); border-radius: 999px; background: rgba(10,10,14,.6); backdrop-filter: blur(14px); }
+.lang button { font: 700 12px var(--mono); letter-spacing: 1px; color: var(--muted); background: none; border: 0; padding: 7px 12px; border-radius: 999px; cursor: pointer; }
+.lang button[aria-pressed="true"] { color: var(--text); background: rgba(139,92,246,.28); }
+.sub { font: 700 13px var(--mono); letter-spacing: 2px; text-transform: uppercase; color: var(--cyan); margin: 38px 0 0; }
+.missions.small { margin-top: 14px; grid-template-columns: repeat(2, 1fr); }
+.contactlist { display: grid; gap: 12px; margin-top: 26px; max-width: 520px; }
+.contactlist a { display: flex; align-items: center; justify-content: space-between; gap: 16px; text-decoration: none; padding: 14px 18px; border-radius: 14px; border: 1px solid var(--line); background: rgba(20,20,26,.7); font: 600 15px var(--body); transition: border-color .25s; }
+.contactlist a:hover { border-color: var(--cyan); }
+.contactlist small { font: 500 12px var(--mono); color: var(--faint); }
+.where { margin-top: 18px; font: 500 14px var(--mono); color: var(--muted); }
+@media (max-width: 900px) { .missions.small { grid-template-columns: 1fr; } .lang { top: 14px; right: 14px; } .brand { display: none; } }
 </style>
 </head>
 <body>
@@ -176,57 +183,66 @@ footer { position: relative; z-index: 2; padding: 30px max(24px, 6vw) 40px; colo
 <div class="glow" id="glow"></div>
 <div class="progress" id="progress"></div>
 
-<a class="brand" href="#accueil">EL-KAMZY<span>.</span>FR</a>
+<a class="brand" href="#accueil">CHARLY<span>.</span>IT</a>
 <nav class="top" aria-label="Sections">
-  <a href="#accueil" data-s="0">Accueil</a>
-  <a href="#parcours" data-s="1">Parcours</a>
-  <a href="#experience" data-s="2">Expérience</a>
-  <a href="#competences" data-s="3">Compétences</a>
-  <a href="#projets" data-s="4">Projets</a>
-  <a href="#contact" data-s="5">Contact</a>
+  <a href="#accueil" data-s="0" data-i18n="n0">Accueil</a>
+  <a href="#parcours" data-s="1" data-i18n="n1">Parcours</a>
+  <a href="#experience" data-s="2" data-i18n="n2">Expérience</a>
+  <a href="#competences" data-s="3" data-i18n="n3">Compétences</a>
+  <a href="#contact" data-s="4" data-i18n="n4">Contact</a>
 </nav>
+<div class="lang" role="group" aria-label="Langue / Language">
+  <button type="button" data-l="fr" aria-pressed="true">FR</button>
+  <button type="button" data-l="en" aria-pressed="false">EN</button>
+</div>
 
 <main>
   <!-- 00 · Accueil -->
   <section id="accueil" data-shape="0">
     <div class="wrap">
       <div class="left">
+        <div class="who">
+          <img class="avatar" src="photo.webp" width="84" height="84" alt="Portrait de Charly Malaquis Dutin" data-i18n-alt="alt_photo">
+          <div class="fullname"><b>Charly Malaquis Dutin</b></div>
+        </div>
         <div class="hello">PS&gt; <b>whoami</b></div>
         <h1 id="name" aria-label="Charly"><span class="grad">Charly</span></h1>
-        <p class="role">Administrateur systèmes &amp; réseaux en alternance. Je sécurise, j'automatise, et je construis mes propres outils.</p>
-        <div class="typed" aria-live="polite"><span class="p">PS&gt;</span> <span id="typed">Get-Projet -Nom Nexus, Pulse, StationBlanche</span><span class="cur"></span></div>
+        <p class="role" data-i18n="role">Alternant administrateur systèmes et réseaux, orienté Microsoft 365 et sécurité de la messagerie.</p>
+        <div class="typed" aria-live="polite"><span class="p">PS&gt;</span> <span id="typed">Get-Certification -Editeur Hornetsecurity</span><span class="cur"></span></div>
         <div class="chips">
-          <span class="chip"><i></i>BTS GMSI obtenu</span>
-          <span class="chip"><i class="c"></i>Licence ASR · 2026 → 2027</span>
-          <span class="chip"><i class="v"></i>2 logiciels en v1.0</span>
+          <span class="chip"><i></i><span data-i18n="c1">BTS GMSI obtenu</span></span>
+          <span class="chip"><i class="c"></i><span data-i18n="c2">Bachelor ASR · 2026 → 2027</span></span>
+          <span class="chip"><i class="v"></i><span>Hornetsecurity Certified Engineer</span></span>
         </div>
         <div class="cta">
-          <a class="btn main magnet" href="#projets">Voir mes projets →</a>
-          <a class="btn magnet" href="https://github.com/El-Kamzy-FR">GitHub · El-Kamzy-FR</a>
+          <a class="btn main magnet" href="#contact" data-i18n="cta1">Me contacter →</a>
+          <a class="btn magnet" href="https://www.linkedin.com/in/charly-malaquis-dutin-4028ab291" rel="noopener">LinkedIn</a>
         </div>
       </div>
       <div class="stats wide">
-        <div class="stat"><b data-count="42">42</b><span>réglages Windows annulables dans Pulse</span></div>
-        <div class="stat"><b>2 sites</b><span>Hyper-V, baies SAN et Veeam déployés en alternance</span></div>
-        <div class="stat"><b data-count="7" data-suffix=" s">7 s</b><span>pour cartographier 373 Go de disque (Pulse)</span></div>
-        <div class="stat"><b data-count="5000" data-prefix="≈ ">≈ 5000</b><span>lignes de C# et XAML écrites pour Pulse</span></div>
+        <div class="stat"><b data-count="200" data-suffix="+">200+</b><span data-i18n="s1">tenants Microsoft 365 intégrés à Hornetsecurity</span></div>
+        <div class="stat"><b data-i18n="s2b">Mai 2026</b><span data-i18n="s2">certification Hornetsecurity Certified Engineer</span></div>
+        <div class="stat"><b>2024</b><span data-i18n="s3">début de l'alternance chez TDI-services</span></div>
+        <div class="stat"><b data-i18n="s4b">Bac +3</b><span data-i18n="s4">Bachelor ASR en cours au CESI Angoulême</span></div>
       </div>
     </div>
-    <div class="scrollhint">DÉFILER<span></span></div>
+    <div class="scrollhint"><span data-i18n="scroll">DÉFILER</span><span></span></div>
   </section>
 
   <!-- 01 · Parcours -->
   <section id="parcours" data-shape="1">
     <div class="wrap">
       <div class="right glass reveal">
-        <div class="eyebrow">01 · Parcours</div>
-        <h2>Un cursus <span class="grad">100 % alternance</span></h2>
+        <div class="eyebrow" data-i18n="p_eyebrow">01 · Parcours</div>
+        <h2 data-i18n="p_h2">Un parcours <span class="grad">en alternance</span></h2>
         <div class="timeline">
-          <div class="step tilt"><div class="yr">2024 → 2026</div><div><h3>BTS GMSI</h3><p>Gestionnaire en maintenance et support informatique</p></div><span class="tag t-ok">OBTENU</span></div>
-          <div class="step tilt now"><div class="yr">2026 → 2027</div><div><h3>Licence ASR</h3><p>Administrateur systèmes et réseaux (bac +3)</p></div><span class="tag t-now">EN COURS</span></div>
-          <div class="step tilt"><div class="yr">2027 → 2029</div><div><h3>Master</h3><p>Bac +5, toujours en alternance</p></div><span class="tag t-goal">OBJECTIF</span></div>
+          <div class="step tilt"><div class="yr">2024</div><div><h3 data-i18n="p1h">Bac pro Systèmes numériques</h3><p data-i18n="p1p">Lycée Charles-Augustin Coulomb</p></div><span class="tag t-ok" data-i18n="t_ok">OBTENU</span></div>
+          <div class="step tilt"><div class="yr">2024 → 2026</div><div><h3>BTS GMSI</h3><p data-i18n="p2p">Gestionnaire en maintenance et support informatique (bac +2), cycle en 2 ans en alternance · CESI Angoulême</p></div><span class="tag t-ok" data-i18n="t_ok">OBTENU</span></div>
+          <div class="step tilt"><div class="yr" data-i18n="p3y">13 mai 2026</div><div><h3>Hornetsecurity Certified Engineer</h3><p data-i18n="p3p">Sécurité de la messagerie, solutions Hornetsecurity, dépannage</p></div><span class="tag t-ok" data-i18n="t_ok">OBTENU</span></div>
+          <div class="step tilt now"><div class="yr">2026 → 2027</div><div><h3>Bachelor ASR</h3><p data-i18n="p4p">Bachelor administrateur·trice systèmes et réseaux, 3e année en alternance (bac +3) · CESI Angoulême</p></div><span class="tag t-now" data-i18n="t_now">EN COURS</span></div>
+          <div class="step tilt"><div class="yr">2027 → 2029</div><div><h3 data-i18n="p5h">Mastère professionnel</h3><p data-i18n="p5p">Mastère professionnel manager en infrastructures et cybersécurité des SI (bac +5, 2 ans) · CESI Angoulême, en alternance</p></div><span class="tag t-goal" data-i18n="t_goal">OBJECTIF</span></div>
         </div>
-        <p class="alt">// en entreprise depuis 2024, au sein d'une équipe infrastructure</p>
+        <p class="alt" data-i18n="p_alt">// en alternance chez TDI-services depuis septembre 2024</p>
       </div>
     </div>
   </section>
@@ -235,16 +251,19 @@ footer { position: relative; z-index: 2; padding: 30px max(24px, 6vw) 40px; colo
   <section id="experience" data-shape="2">
     <div class="wrap">
       <div class="left glass reveal" style="grid-column: 1 / span 8">
-        <div class="eyebrow">02 · Expérience</div>
-        <h2>Alternant <span class="grad">admin systèmes &amp; réseaux</span></h2>
-        <p class="meta">Septembre 2024 → aujourd'hui · équipe de 5 : 1 manager, 2 ingénieurs, 1 technicien et moi</p>
+        <div class="eyebrow" data-i18n="e_eyebrow">02 · Expérience</div>
+        <h2 data-i18n="e_h2">Alternant <span class="grad">admin systèmes &amp; réseaux</span></h2>
+        <p class="meta" data-i18n="e_meta">TDI-services · septembre 2024 → aujourd'hui · BU 365, équipe de 5 personnes</p>
         <ul class="missions">
-          <li><b>Infrastructure</b><span>Déploiement d'une infrastructure Hyper-V sur deux sites, baies SAN et sauvegardes Veeam.</span></li>
-          <li><b>Microsoft 365</b><span>Administration de tenants clients (Entra ID, Exchange Online) et intégration du filtrage Hornetsecurity.</span></li>
-          <li><b>Automatisation</b><span>Circuit d'approbation des demandes d'avoir avec Power Automate et Microsoft Forms.</span></li>
-          <li><b>Sécurité</b><span>Conception d'une station blanche de décontamination USB, du choix des outils aux scripts.</span></li>
-          <li><b>Documentation</b><span>Procédures techniques rédigées pour le wiki de l'équipe (BookStack).</span></li>
-          <li><b>Support</b><span>Maintenance du parc, postes Windows, comptes et accès utilisateurs.</span></li>
+          <li><b>Microsoft 365</b><span data-i18n="m1">Administration de tenants clients : Entra ID, Exchange Online.</span></li>
+          <li><b>Hornetsecurity</b><span data-i18n="m2">Intégration récurrente de tenants clients sur 365 Total Protection : plus de 200 à ce jour.</span></li>
+          <li><b data-i18n="m3t">Sécurité de la messagerie</b><span data-i18n="m3">Certifié Hornetsecurity Certified Engineer (mai 2026) : environnements complexes et dépannage.</span></li>
+          <li><b data-i18n="m4t">Documentation</b><span data-i18n="m4">Rédaction de procédures techniques pour l'équipe.</span></li>
+        </ul>
+        <div class="sub" data-i18n="st">Stages · Bac pro</div>
+        <ul class="missions small">
+          <li><b>Charente Informatique Diffusion</b><span data-i18n="st1">20/11/2023 → 26/01/2024 · stagiaire technicien informatique : sauvegarde Datto BCDR, dépannage matériel et système, infrastructure réseau.</span></li>
+          <li><b>Leroy-Somer</b><span data-i18n="st2">07/03/2023 → 12/05/2023 · stagiaire technicien informatique : helpdesk, installation de serveur, déploiement de machines virtuelles.</span></li>
         </ul>
       </div>
     </div>
@@ -254,82 +273,71 @@ footer { position: relative; z-index: 2; padding: 30px max(24px, 6vw) 40px; colo
   <section id="competences" data-shape="3">
     <div class="wrap">
       <div class="right reveal">
-        <div class="eyebrow">03 · Compétences</div>
-        <h2>Du <span class="grad">rack</span> au <span class="grad">script</span></h2>
+        <div class="eyebrow" data-i18n="k_eyebrow">03 · Compétences</div>
+        <h2 data-i18n="k_h2">Du <span class="grad">rack</span> au <span class="grad">script</span></h2>
         <div class="skills">
-          <div class="skill"><h3>Systèmes &amp; infra <em>// on-prem</em></h3><div class="pills"><span>Windows Server</span><span>Active Directory</span><span>DNS · DHCP · GPO</span><span>Hyper-V</span><span>Veeam</span><span>Ubuntu Server</span><span>Debian</span></div></div>
-          <div class="skill"><h3>Cloud Microsoft <em>// M365</em></h3><div class="pills"><span>Microsoft 365</span><span>Entra ID</span><span>Exchange Online</span><span>Intune</span><span>Azure</span><span>Power Automate</span></div></div>
-          <div class="skill"><h3>Réseaux &amp; sécurité <em>// défense</em></h3><div class="pills"><span>TCP/IP</span><span>VLAN</span><span>VPN</span><span>pfSense</span><span>Defender</span><span>Hornetsecurity</span><span>ClamAV</span></div></div>
-          <div class="skill"><h3>Automatisation &amp; dev <em>// code</em></h3><div class="pills"><span>PowerShell</span><span>C# · .NET 10</span><span>WPF</span><span>Python</span><span>Bash</span><span>SQLite</span><span>Git · Actions</span><span>Claude Code · MCP</span></div></div>
+          <div class="skill"><h3><span data-i18n="k1">Systèmes &amp; infra</span> <em>// on-prem</em></h3><div class="pills"><span>Windows Server</span><span>Active Directory</span><span>DNS · DHCP · GPO</span><span>Hyper-V</span><span>Veeam</span><span>Debian</span></div></div>
+          <div class="skill"><h3><span data-i18n="k2">Cloud Microsoft</span> <em>// M365</em></h3><div class="pills"><span>Microsoft 365</span><span>Entra ID</span><span>Exchange Online</span><span>Intune</span><span>Azure</span><span>Power Automate</span></div></div>
+          <div class="skill"><h3><span data-i18n="k3">Réseaux &amp; sécurité</span> <em data-i18n="k3e">// défense</em></h3><div class="pills"><span>TCP/IP</span><span>VLAN</span><span>VPN</span><span>pfSense</span><span>Defender</span><span>Hornetsecurity</span><span>ClamAV</span></div></div>
+          <div class="skill"><h3><span data-i18n="k4">Automatisation &amp; dev</span> <em data-i18n="k4e">// assisté par IA</em></h3><div class="pills"><span>PowerShell</span><span>Python</span><span>Bash</span><span>C#</span><span>Git · Actions</span><span>Claude Code · MCP</span></div></div>
         </div>
       </div>
       <div class="marquee" aria-hidden="true"><div>
-        <span>WINDOWS SERVER</span><b>✦</b><span>ENTRA ID</span><b>✦</b><span>HYPER-V</span><b>✦</b><span>POWERSHELL</span><b>✦</b><span>PFSENSE</span><b>✦</b><span>C# .NET</span><b>✦</b>
-        <span>WINDOWS SERVER</span><b>✦</b><span>ENTRA ID</span><b>✦</b><span>HYPER-V</span><b>✦</b><span>POWERSHELL</span><b>✦</b><span>PFSENSE</span><b>✦</b><span>C# .NET</span><b>✦</b>
+        <span>WINDOWS SERVER</span><b>✦</b><span>ENTRA ID</span><b>✦</b><span>HORNETSECURITY</span><b>✦</b><span>POWERSHELL</span><b>✦</b><span>MICROSOFT 365</span><b>✦</b><span>PFSENSE</span><b>✦</b>
+        <span>WINDOWS SERVER</span><b>✦</b><span>ENTRA ID</span><b>✦</b><span>HORNETSECURITY</span><b>✦</b><span>POWERSHELL</span><b>✦</b><span>MICROSOFT 365</span><b>✦</b><span>PFSENSE</span><b>✦</b>
       </div></div>
     </div>
   </section>
 
-  <!-- 04 · Projets -->
-  <section id="projets" data-shape="4">
-    <div class="wrap">
-      <div class="wide reveal">
-        <div class="eyebrow">04 · Projets</div>
-        <h2>Ce que je <span class="grad">construis</span></h2>
-      </div>
-      <div class="projects">
-        <article class="card tilt">
-          <div class="top"><div class="ico"><svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="4"/><path d="M7 12h4M9 10v4M15.5 11h.01M17.5 13h.01"/></svg></div><span class="status" style="color:var(--ok)"><i style="background:var(--ok)"></i>V1.0 · AU QUOTIDIEN</span></div>
-          <h3 style="margin-top:18px">Nexus</h3>
-          <p>Mon launcher de jeux : toutes mes plateformes dans une seule bibliothèque, pour ne plus ouvrir les autres.</p>
-          <ul><li>Steam, Epic, Riot, Xbox et jeux autonomes</li><li>Temps de jeu exact, jeux possédés non installés</li><li>Mises à jour automatiques via GitHub Releases</li></ul>
-          <div class="stack"><span>C#</span><span>WPF</span><span>.NET 10</span><span>SQLite</span><span>GitHub Actions</span></div>
-        </article>
-        <article class="card tilt">
-          <div class="top"><div class="ico"><svg viewBox="0 0 24 24"><path d="M3 12h4l2-6 4 12 2-6h6"/></svg></div><span class="status" style="color:var(--ok)"><i style="background:var(--ok)"></i>V1.0 · EN PRODUCTION</span></div>
-          <h3 style="margin-top:18px">Pulse</h3>
-          <p>Optimisation et surveillance de mes PC, sans jamais toucher à Defender ni à l'UAC.</p>
-          <ul><li>Analyse notée sur 100, 42 réglages annulables</li><li>Profil Jeu automatique au lancement d'un jeu</li><li>Santé batterie, espace disque, rapport HTML</li></ul>
-          <div class="stack"><span>C#</span><span>WPF</span><span>PowerShell</span><span>Win32</span><span>Inno Setup</span></div>
-        </article>
-        <article class="card tilt">
-          <div class="top"><div class="ico"><svg viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg></div><span class="status" style="color:var(--warn)"><i style="background:var(--warn)"></i>ENTREPRISE · V6 EN TEST</span></div>
-          <h3 style="margin-top:18px">Station Blanche</h3>
-          <p>Borne de décontamination de clés USB, de l'installation aux scripts de déploiement.</p>
-          <ul><li>Double moteur antivirus</li><li>Identification du support, rapports PDF</li><li>Interface kiosque verrouillée</li></ul>
-          <div class="stack"><span>Ubuntu 24.04</span><span>ClamAV</span><span>GravityZone</span><span>Bash</span></div>
-        </article>
-        <article class="card tilt">
-          <div class="top"><div class="ico"><svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7"/><rect x="6" y="11" width="12" height="9" rx="1.5"/><path d="M9 15h6M9 18h6"/></svg></div><span class="status" style="color:var(--muted)"><i style="background:var(--muted)"></i>EN CONCEPTION</span></div>
-          <h3 style="margin-top:18px">Homelab</h3>
-          <p>Mon infra perso, isolée du réseau de la maison, pour expérimenter sans limite.</p>
-          <ul><li>Hyperviseur et pare-feu virtualisé</li><li>NAS de plusieurs To, switch 2,5 Gb</li><li>Médias, serveurs de jeu, IA locale</li></ul>
-          <div class="stack"><span>Virtualisation</span><span>pfSense</span><span>VLAN</span><span>NAS</span></div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- 05 · Contact -->
-  <section id="contact" data-shape="5">
+  <!-- 04 · Contact -->
+  <section id="contact" data-shape="4">
     <div class="wrap">
       <div class="left glass reveal">
-        <div class="eyebrow">05 · Contact</div>
-        <p class="big">On construit<br><span class="grad">quelque chose ?</span></p>
-        <p class="lead">Infrastructure, Microsoft 365, cybersécurité ou outils Windows : je suis ouvert aux échanges et aux opportunités pour la suite de mon alternance.</p>
-        <div class="cta">
-          <a class="btn main magnet" href="https://github.com/El-Kamzy-FR">Mon GitHub →</a>
-          <a class="btn magnet" href="#accueil">Revenir en haut ↑</a>
+        <img class="avatar lg" src="photo.webp" width="148" height="148" alt="Portrait de Charly Malaquis Dutin" data-i18n-alt="alt_photo" loading="lazy">
+        <div class="eyebrow" data-i18n="ct_eyebrow">04 · Contact</div>
+        <p class="big" data-i18n="ct_big">Discutons<br><span class="grad">ensemble.</span></p>
+        <p class="lead" data-i18n="ct_lead">Ouvert aux échanges et aux opportunités en administration systèmes et réseaux, Microsoft 365 et sécurité de la messagerie.</p>
+        <div class="contactlist">
+          <a href="mailto:Charly.it@icloud.com"><span>Charly.it@icloud.com</span><small data-i18n="ct_mail">E-mail</small></a>
+          <a href="https://www.linkedin.com/in/charly-malaquis-dutin-4028ab291" rel="noopener"><span>LinkedIn</span><small>charly-malaquis-dutin</small></a>
+          <a href="https://github.com/Charly-IT" rel="noopener"><span>GitHub</span><small>Charly-IT</small></a>
         </div>
+        <p class="where" data-i18n="ct_where">Nouvelle-Aquitaine, France</p>
       </div>
     </div>
   </section>
 </main>
-<footer><span>© 2026 Charly · El-Kamzy-FR</span><span>Scène 3D : 7 000 particules en WebGL</span></footer>
+<footer><span>© 2026 Charly Malaquis Dutin</span><span data-i18n="foot">Scène 3D : 7 000 particules en WebGL</span></footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+<script>
+(() => {
+  const EN = {"alt_photo": "Portrait of Charly Malaquis Dutin", "n0": "Home", "n1": "Education", "n2": "Experience", "n3": "Skills", "n4": "Contact", "role": "Systems and network administration apprentice, focused on Microsoft 365 and email security.", "c1": "BTS GMSI earned", "c2": "Bachelor ASR · 2026 → 2027", "cta1": "Get in touch →", "s1": "Microsoft 365 tenants onboarded to Hornetsecurity", "s2b": "May 2026", "s2": "Hornetsecurity Certified Engineer certification", "s3": "apprenticeship at TDI-services began", "s4b": "Bachelor", "s4": "Bachelor's degree (ASR) in progress at CESI Angoulême", "scroll": "SCROLL", "p_eyebrow": "01 · Education", "p_h2": "A <span class=\"grad\">work-study</span> path", "p1h": "Vocational Baccalaureate, Digital Systems", "p1p": "Lycée Charles-Augustin Coulomb", "p2p": "IT support and maintenance manager (level 5), 2-year work-study cycle · CESI Angoulême", "p3y": "May 13, 2026", "p3p": "Email security, Hornetsecurity solutions, troubleshooting", "p4p": "Bachelor Systems and Network Administrator, 3rd year work-study (level 6) · CESI Angoulême", "p5p": "Professional Master (Mastère professionnel): Infrastructure and Cybersecurity Manager for IT Systems (level 7, 2 years) · CESI Angoulême, work-study", "p5h": "Professional Master", "t_ok": "EARNED", "t_now": "IN PROGRESS", "t_goal": "GOAL", "p_alt": "// work-study at TDI-services since September 2024", "e_eyebrow": "02 · Experience", "e_h2": "Apprentice <span class=\"grad\">systems &amp; network admin</span>", "e_meta": "TDI-services · September 2024 → present · BU 365, team of 5", "m1": "Administration of customer tenants: Entra ID, Exchange Online.", "m2": "Recurring onboarding of customer tenants onto 365 Total Protection: over 200 so far.", "m3t": "Email security", "m3": "Hornetsecurity Certified Engineer (May 2026): complex environments and troubleshooting.", "m4t": "Documentation", "m4": "Writing technical procedures for the team.", "st": "Internships · Vocational Baccalaureate", "st1": "11/20/2023 → 01/26/2024 · IT technician intern: Datto BCDR backup, hardware and system repair, network infrastructure.", "st2": "03/07/2023 → 05/12/2023 · IT technician intern: helpdesk, server installation, virtual machine deployment.", "k_eyebrow": "03 · Skills", "k_h2": "From <span class=\"grad\">rack</span> to <span class=\"grad\">script</span>", "k1": "Systems &amp; infrastructure", "k2": "Microsoft cloud", "k3": "Networks &amp; security", "k4": "Automation &amp; dev", "k4e": "// AI-assisted", "k3e": "// defense", "ct_eyebrow": "04 · Contact", "ct_big": "Let's<br><span class=\"grad\">talk.</span>", "ct_lead": "Open to conversations and opportunities in systems and network administration, Microsoft 365 and email security.", "ct_mail": "Email", "ct_where": "Nouvelle-Aquitaine, France", "foot": "3D scene: 7,000 particles in WebGL", "_title": "Charly Malaquis Dutin · Systems & Network Administration Apprentice", "_desc": "Charly Malaquis Dutin, systems and network administration apprentice (Microsoft 365, email security). Hornetsecurity Certified Engineer."};
+  const els = [...document.querySelectorAll('[data-i18n]')];
+  els.forEach(el => { el.dataset.fr = el.innerHTML; });
+  const alts = [...document.querySelectorAll('[data-i18n-alt]')];
+  alts.forEach(el => { el.dataset.fr = el.getAttribute('alt'); });
+  const frTitle = document.title, meta = document.querySelector('meta[name="description"]'), frDesc = meta ? meta.content : '';
+  const btns = [...document.querySelectorAll('.lang button')];
+  function setLang(l, save) {
+    document.documentElement.lang = l;
+    els.forEach(el => { const k = el.dataset.i18n; el.innerHTML = l === 'en' && EN[k] !== undefined ? EN[k] : el.dataset.fr; });
+    alts.forEach(el => { const k = el.dataset.i18nAlt; el.setAttribute('alt', l === 'en' && EN[k] ? EN[k] : el.dataset.fr); });
+    document.title = l === 'en' ? EN._title : frTitle;
+    if (meta) meta.content = l === 'en' ? EN._desc : frDesc;
+    btns.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.l === l)));
+    if (save) { try { localStorage.setItem('lang', l); } catch (e) {} }
+  }
+  btns.forEach(b => b.addEventListener('click', () => setLang(b.dataset.l, true)));
+  let saved = null; try { saved = localStorage.getItem('lang'); } catch (e) {}
+  const browser = (navigator.language || 'fr').toLowerCase().startsWith('fr') ? 'fr' : 'en';
+  const start = saved === 'fr' || saved === 'en' ? saved : browser;
+  if (start === 'en') setLang('en', false);
+})();
+</script>
 <script>
 (() => {
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -382,13 +390,7 @@ footer { position: relative; z-index: 2; padding: 30px max(24px, 6vw) 40px; colo
       const tube = .22;
       return [cx + tube * Math.cos(ph) * Math.cos(p*tt), cy + tube * Math.cos(ph) * Math.sin(p*tt), cz + tube * Math.sin(ph)];
     }));
-    // 4 · quatre amas (les quatre projets)
-    const centers = [[-1.9, 1.1, 0], [1.9, 1.1, 0], [-1.9, -1.1, 0], [1.9, -1.1, 0]];
-    shapes.push(make(i => {
-      const c = centers[i % 4], t = Math.acos(rnd(-1, 1)), ph = rnd(0, Math.PI * 2), r = Math.cbrt(Math.random()) * .85;
-      return [c[0] + r * Math.sin(t) * Math.cos(ph), c[1] + r * Math.cos(t), c[2] + r * Math.sin(t) * Math.sin(ph)];
-    }));
-    // 5 · onde (contact)
+    // 4 · onde (contact)
     const side = Math.ceil(Math.sqrt(N));
     shapes.push(make(i => {
       const gx = (i % side) / side - .5, gz = Math.floor(i / side) / side - .5;
@@ -456,8 +458,8 @@ footer { position: relative; z-index: 2; padding: 30px max(24px, 6vw) 40px; colo
     scene.add(stars);
 
     // Position de la forme par section (gauche / droite selon le texte)
-    const placeX = mobile ? [0, 0, 0, 0, 0, 0] : [2.3, -2.6, 2.9, -2.5, 0, 2.6];
-    const placeS = mobile ? [.8, .7, .75, .8, .75, .8] : [1, .95, 1, 1, 1.05, 1];
+    const placeX = mobile ? [0, 0, 0, 0, 0] : [2.3, -2.6, 2.9, -2.5, 2.6];
+    const placeS = mobile ? [.8, .7, .75, .8, .8] : [1, .95, 1, 1, 1];
 
     let progress = 0, target = 0;
     const mouse = { x: 0, y: 0, sx: 0, sy: 0 };
@@ -499,8 +501,8 @@ footer { position: relative; z-index: 2; padding: 30px max(24px, 6vw) 40px; colo
       group.scale.setScalar(ps);
       const spin = reduce ? 0 : t * .12;
       mouse.sx += (mouse.x - mouse.sx) * .05; mouse.sy += (mouse.y - mouse.sy) * .05;
-      group.rotation.y = spin + mouse.sx * .6 + (i === 2 || i === 4 ? -spin * .85 : 0);
-      group.rotation.x = mouse.sy * .4 + (i === 5 ? .35 * f : 0) + (i === 4 && f > 0 ? .35 * f : 0);
+      group.rotation.y = spin + mouse.sx * .6 + (i === 2 ? -spin * .85 : 0);
+      group.rotation.x = mouse.sy * .4 + (i === 4 ? .35 * f : 0);
       net.material.opacity = Math.max(0, .35 * (1 - progress * 1.8));
       ring1.material.opacity = .18 * Math.max(.25, 1 - progress * .5);
       ring1.rotation.z = reduce ? 0 : t * .2; ring2.rotation.z = reduce ? 0 : -t * .14;
@@ -550,7 +552,7 @@ footer { position: relative; z-index: 2; padding: 30px max(24px, 6vw) 40px; colo
   });
 
   // Ligne tapée dans le terminal de l'accueil (le texte complet est déjà là au repos)
-  const lines = ['Get-Projet -Nom Nexus, Pulse, StationBlanche', 'Get-Focus | Sort-Object Passion -Descending', 'Test-Connection -Avenir -Count ∞', 'Start-Alternance -Niveau Licence'];
+  const lines = ['Get-Certification -Editeur Hornetsecurity', 'Connect-ExchangeOnline', 'Get-MgUser -All | Measure-Object', 'Start-Alternance -Niveau Bachelor'];
   const typed = document.getElementById('typed');
   if (!reduce) {
     let li = 0;

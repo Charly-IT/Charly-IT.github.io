@@ -1,7 +1,7 @@
-# el-kamzy-fr.github.io
+# charly-it.github.io
 
-Mon site portfolio : scène 3D WebGL (Three.js, 7 000 particules qui changent de forme à chaque section), animations GSAP, parcours, expérience, compétences et projets.
+Portfolio de Charly Malaquis Dutin, alternant administrateur systèmes et réseaux.
 
-En ligne : https://el-kamzy-fr.github.io
+En ligne : https://charly-it.github.io
 
-Une seule page autonome (`index.html`), sans étape de compilation : Three.js r128 et GSAP 3.12.5 sont chargés depuis cdnjs.
+Page unique et autonome (`index.html`), en français et en anglais (bouton FR / EN, langue du navigateur détectée au premier chargement). Scène 3D WebGL avec Three.js r128 et animations GSAP 3.12.5, chargés depuis cdnjs. Aucune étape de compilation.
