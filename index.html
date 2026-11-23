@@ -82,7 +82,6 @@ button:focus-visible,.btn:focus-visible,a:focus-visible{outline:2px solid var(--
 .portrait{justify-self:end;position:relative;width:min(100%,300px);aspect-ratio:3/4}
 .portrait:before{content:"";position:absolute;inset:-12px;border:1px solid rgba(214,184,126,.7);border-radius:999px 999px 4px 4px}
 .portrait img{width:100%;height:100%;object-fit:cover;object-position:50% 22%;border-radius:999px 999px 2px 2px;display:block;box-shadow:0 30px 70px rgba(0,0,0,.5);filter:saturate(.94)}
-.hero .credit{position:absolute;right:28px;bottom:16px;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(244,238,225,.6)}
 .rise{animation:rise 1.5s var(--ease) both}
 @keyframes rise{from{opacity:0;transform:translateY(34px)}to{opacity:1;transform:none}}
 @keyframes down{from{transform:translateY(-100%);opacity:0}to{transform:none;opacity:1}}
@@ -138,8 +137,6 @@ body[data-mode="perso"] .s h2 em{color:var(--lav)}
 .band{position:relative;height:clamp(300px,62vh,660px);margin:112px 0 0;overflow:hidden;background:var(--cypress-d)}
 .band .ph{position:absolute;inset:-9% 0 -9% 0;background-size:cover;background-position:50% 50%;will-change:transform}
 .band:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(14,22,16,.18),rgba(14,22,16,0) 30%,rgba(14,22,16,.4))}
-.band figcaption{position:absolute;left:max(28px,calc((100% - 1120px)/2));bottom:20px;z-index:2;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:rgba(244,238,225,.85);display:flex;gap:14px;align-items:center}
-.band figcaption:before{content:"";width:34px;height:1px;background:currentColor}
 .b1 .ph{background-image:url(bg/cypres.webp)}
 .b2 .ph{background-image:url(bg/bastide.webp)}
 
@@ -192,8 +189,7 @@ main.swap{opacity:0}
   .top .wrap{gap:10px;height:62px}
   .brand{font-size:18px}
   .seg button{padding:6px 11px}
-  .hero .credit{display:none}
-}
+  }
 @media (max-width:520px){
   .brand{display:none}
   .spacer{display:none}
@@ -252,7 +248,6 @@ main.swap{opacity:0}
     </div>
     <div class="portrait rise d5"><img src="photo.webp" width="300" height="400" alt="Portrait de Charly Malaquis Dutin" data-i18n-alt="alt"></div>
   </div>
-  <span class="credit" data-i18n="credit">Rendu 3D · Blender</span>
 </section>
 
 <!-- ================= HÉROS PERSO ================= -->
@@ -269,7 +264,6 @@ main.swap{opacity:0}
       </div>
     </div>
   </div>
-  <span class="credit" data-i18n="credit">Rendu 3D · Blender</span>
 </section>
 
 <!-- ================= PRO ================= -->
@@ -317,7 +311,7 @@ main.swap{opacity:0}
     </div>
   </section>
 
-  <figure class="band b1"><div class="ph" data-par="0.1"></div><figcaption data-i18n="cap1">Rangs de lavande, fin de journée · rendu 3D</figcaption></figure>
+  <figure class="band b1"><div class="ph" data-par="0.1"></div></figure>
 
   <section class="s" id="experience" style="padding-top:112px">
     <div class="wrap s2">
@@ -364,7 +358,7 @@ main.swap{opacity:0}
     </div>
   </section>
 
-  <figure class="band b2"><div class="ph" data-par="0.1"></div><figcaption data-i18n="cap2">Lavande en fleur · rendu 3D</figcaption></figure>
+  <figure class="band b2"><div class="ph" data-par="0.1"></div></figure>
 
   <section class="contact" id="contact">
     <div class="wrap">
